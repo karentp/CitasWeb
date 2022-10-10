@@ -1,4 +1,3 @@
 node_modules
-.env
-.nvmrc
 .DS_Store
+.nvwrc
