@@ -1,39 +1,34 @@
-import React from 'react'
-import { Paper, Card, Typography, makeStyles } from '@material-ui/core'
+import React, { useState } from 'react'
+import Alert from '@mui/material/Alert';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
-const useStyles = makeStyles(theme => ({
-    pageForm: {
-        backgroundColor: '#7fffd4',
-        width: '90%'
-    },
-    pageHeader:{
-        padding:theme.spacing(2),
-        display:'flex',
-        marginBottom:theme.spacing(2)
-    },
-    pageTitle:{
-        paddingLeft:theme.spacing(4),
-        '& .MuiTypography-subtitle2':{
-            opacity:'0.6'
-        },
-        align:'center'
-    }
-}))
 
-export default function PageHeader(props) {
+export default function SuccessMessage(props) {
+    const [showMessage, setShowMessage] = useState(true)
 
-    const classes = useStyles();
-    const { message } = props;
+    let { message } = props;
     return (
-        <Paper elevation={0} variant="outlined" className={classes.pageForm}>
-            <div className={classes.pageHeader}>
-                <div className={classes.pageTitle}>
-                    <Typography
-                        variant="h4"
-                        component="div">
-                        {message}</Typography>
-                </div>
-            </div>
-        </Paper>
+        <div hidden = {showMessage ? false : true}>
+            <Alert
+                severity= "success"
+                action={
+                    <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"
+                        onClick={() => {
+                            console.log("clicked...")
+                            setShowMessage(false);
+                        }}
+                    >
+                        <CloseIcon fontSize="inherit" />
+                    </IconButton>
+                }>
+                {message}
+            </Alert>
+        </div>
     )
 }
+
+

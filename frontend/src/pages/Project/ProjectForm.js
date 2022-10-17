@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Grid, } from '@material-ui/core';
 import Controls from "../../components/controls/Controls";
 import { useForm, Form } from '../../components/useForm';
-import { Paper, makeStyles, Box } from '@material-ui/core';
+import { Paper, makeStyles } from '@material-ui/core';
 import EcoIcon from '@material-ui/icons/Eco';
 import PageHeader from "../../components/PageHeader";
 import CircularStatic from '../../components/CircularStatic'
@@ -11,8 +11,6 @@ import { useParams } from 'react-router-dom';
 import AlertMessage from '../../components/AlertMessage';
 import SuccessMessage from '../../components/SuccessMessage'
 import ImageComponent from '../../components/ImageComponent';
-import MenuItem from '@mui/material/MenuItem';
-import CalendarTemplate from './Calendar';
 
 
 const initialBValues = {
@@ -56,29 +54,14 @@ export default function ProjectForm() {
     const [labName, setLabName] = useState('');
     const { id } = useParams();
     const classes = useStyles();
-    const [loading, setLoading] = React.useState(false);
-    const [open, setOpen] = React.useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [open, setOpen] = useState(false);
     const [error, setError] = useState('');
     const [progress, setProgress] = useState(0);
     const [success, setSuccess] = useState(false);
     const message = id ? "Se ha actualizado el servicio!" : "Se ha guardado el servicio!"
     const title = id ? "Actualizar servicio" : "Añadir nuevo servicio";
     const type = id ? "actualizar" : "agregar";
-
-
-    const Calendar = CalendarTemplate({
-        availability,
-        setAvailability: update => {
-            setAvailability(update)
-            saveAvailability(update)
-            console.log("CRAYOLA")
-            console.log(availability)
-        },
-
-
-
-    });
-
 
     const validate = (fieldValues = values) => {
         let temp = { ...errors }
@@ -103,7 +86,11 @@ export default function ProjectForm() {
         if (id)
             getProject();
         return () => { unmounted = true; };
-    }, []);
+    }, [id]);
+
+    useEffect(() => {
+        console.log("loading set to " + isLoading);
+    }, [isLoading]);
 
     const config = {
         headers: {
@@ -114,8 +101,9 @@ export default function ProjectForm() {
             setProgress(Math.round((100 * data.loaded) / data.total));
         },
     };
+
     const getProject = async () => {
-        setLoading(true);
+        setIsLoading(true);
         try {
             let response = await axios.get(`${process.env.REACT_APP_API_URL}/api/private/project/${id}`, {
                 headers: {
@@ -128,7 +116,7 @@ export default function ProjectForm() {
                 },
             });
             setValues(response.data.project);
-            setLoading(false);
+            setIsLoading(false);
         } catch (error) {
             setTimeout(() => {
                 setOpen(false);
@@ -138,7 +126,7 @@ export default function ProjectForm() {
 
             }, 5000);
             setOpen(true);
-            setLoading(false);
+            setIsLoading(false);
             return setError("Authentication failed!");
         }
     }
@@ -147,7 +135,7 @@ export default function ProjectForm() {
         let unmounted = false;
         await getLabName();
         return () => { unmounted = true };
-    }, []);
+    }, [id]);
 
     const getLabName = async () => {
         try {
@@ -161,12 +149,10 @@ export default function ProjectForm() {
         catch (error) {
             console.log("Wenuuuski");
         }
-
     }
 
     const {
         values,
-        avaValues,
         setValues,
         errors,
         setErrors,
@@ -176,7 +162,7 @@ export default function ProjectForm() {
 
     const confirmPost = () => {
         setOpen(true);
-        setLoading(false);
+        setIsLoading(false);
         setSuccess(true);
         if (!id) {
             resetForm({
@@ -185,31 +171,31 @@ export default function ProjectForm() {
         setTimeout(function () {
             setOpen(false);
         }, 6000);
-
     }
     const handleSubmit = async e => {
         e.preventDefault()
+        console.log("handle submit starting...")
         if (validate()) {
-            setLoading(true);
+            console.log("loading = " + isLoading)
+            setIsLoading(true);
+            console.log("loading set to true")
+            console.log("loading = " + isLoading)
             try {
                 if (id) {
+                    console.log("Updating project...")
                     await axios
                         .patch(`${process.env.REACT_APP_API_URL}/api/private/project/${id}`, values, config)
                         .then(confirmPost)
-                console.log("if")
                 } else {
+                    console.log("Creating project...")
                     await axios
                         .post(process.env.REACT_APP_API_URL + "/api/private/project/", values, config)
-                        .patch(`${process.env.REACT_APP_API_URL}/api/private/availability`, values, config)
                         .then(confirmPost)
-                console.log("else")
                 }
-                console.log("en handle submit")
-                createAvailability();
-                setSuccess(true);
             }
             catch (error) {
-                setLoading(false);
+                console.log("error" + error)
+                setIsLoading(false);
                 setTimeout(() => {
                     setTimeout(() => {
                         setError("");
@@ -222,55 +208,7 @@ export default function ProjectForm() {
 
     }
 
-    
-
-    function saveAvailability(update){
-        console.log("LOGGING")
-        console.log(update)
-        availability = update
-        
-    }
-
-    const createAvailability = async e => {
-        console.log("OLIS")
-        console.log(availability)
-        if (validate()) {
-            setLoading(true);
-        
-            availability.forEach(element => {
-            const avaValue = {
-                service: id,
-                start: element.start,
-                end: element.end,
-                timeSlot: 30
-    
-            }
-            try {
-                if (id) {
-                     axios
-                        .post(`${process.env.REACT_APP_API_URL}/api/private/availability/${id}`, avaValue, config)
-                        .then(confirmPost)
-                } else {
-                     axios
-                        .patch(`${process.env.REACT_APP_API_URL}/api/private/availability`, avaValue, config)
-                        .then(confirmPost)
-                }
-            }
-
-            catch (error) {
-                setLoading(false);
-                setTimeout(() => {
-                    setTimeout(() => {
-                        setError("");
-                    }, 2000);
-                }, 5000);
-                return setError("Authentication failed!");
-            }
-        });
-    }
-    }
     return (
-
         <div>
             <PageHeader
                 title={title}
@@ -278,14 +216,9 @@ export default function ProjectForm() {
                 icon={<EcoIcon fontSize="large" color='primary'
                 />}
             />
-            <CircularStatic progress={progress} hidden={!loading} />
+            <CircularStatic progress={progress} hidden={isLoading ? false : true} />
 
-            <div hidden={!success}>
-                <SuccessMessage
-                    message="Ha creado un servicio de manera exitosa" />
-            </div>
-
-            <div hidden={loading}>
+            <div hidden={isLoading}>
                 <Paper className={classes.pageContent}>
                     <ImageComponent initialValues={values} onChange={handleInputChange} />
                     <Form onSubmit={handleSubmit}>
