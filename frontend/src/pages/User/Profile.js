@@ -61,7 +61,8 @@ const initialValues = {
     username: '',
     email: '',
     name: '',
-    lastname: '',
+    firstlastname: '',
+    secondlastname: '',
     phone: '',
     roles: [],
     type: '',
@@ -237,15 +238,24 @@ export default function Profile() {
                             </Grid>
                             <Grid item xs={12} className={classes.gridContainer}>
                                 <Controls.Input
-                                    label="Apellido"
-                                    name="lastname"
-                                    value={values.lastname}
+                                    label="Primer apellido"
+                                    name="firstlastname"
+                                    value={values.firstlastname}
                                     onChange={handleInputChange}
                                     error={errors.lastname}
                                     disabled={!edit}
                                 />
                             </Grid>
-
+                            <Grid item xs={12} className={classes.gridContainer}>
+                                <Controls.Input
+                                    label="Segundo apellido"
+                                    name="secondlastname"
+                                    value={values.secondlastname}
+                                    onChange={handleInputChange}
+                                    error={errors.lastname}
+                                    disabled={!edit}
+                                />
+                            </Grid>
                             <Grid item xs={12} className={classes.gridContainer}>
                                 <Controls.Input
                                     name="phone"
@@ -296,15 +306,6 @@ export default function Profile() {
                     <Paper className={classes.paper} elevation={3}>
                         <ImageComponent initialValues={values} onChange={handleInputChange} profile={true} />
                         <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar style={{ backgroundColor: "green" }}>
-                                        <WorkIcon />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText primary="Id" secondary={values ? values._id : ""} />
-
-                            </ListItem>
                             <ListItem>
                                 <ListItemAvatar>
                                     <Avatar style={{ backgroundColor: "green" }}>

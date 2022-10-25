@@ -13,7 +13,6 @@ import { useForm, Form } from '../../components/useForm';
 import AlertMessage from '../../components/AlertMessage';
 
 const initialValues = {
-  username: '',
   email: '',
   password: '',
   confirmPassword: '',
@@ -112,10 +111,8 @@ const Register = ({ }) => {
 
 
       try {
-        // const role = {
-        //   projectId: value.id,
-        //   role: roleType
-        // }
+        // set the username to be the email for all new accounts.
+        values.username = values.email
         console.log(values);
         const { data } = await axios.post(
           process.env.REACT_APP_API_URL + "/api/private/register",values,config
@@ -140,8 +137,6 @@ const Register = ({ }) => {
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors }
-    if ('username' in fieldValues)
-      temp.username = fieldValues.username ? "" : "Este campo es obligatorio."
     if ('email' in fieldValues)
       temp.email = fieldValues.email ? "" : "Este campo es obligatorio."
     if ('password' in fieldValues)
@@ -185,15 +180,6 @@ const Register = ({ }) => {
         <h3 className="register-screen__title">Crear una cuenta</h3>
         {error && <span className="error-message">{error}</span>}
         <Grid item xs={12}>
-          <Controls.Input
-            name="username"
-            label="Usuario"
-            type="text"
-            value={values.username}
-            onChange={handleInputChange}
-            className={classes.inputField}
-            error={errors.username}
-          />
           <Controls.Input
             name="email"
             label="Email"

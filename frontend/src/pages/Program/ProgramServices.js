@@ -167,7 +167,7 @@ export default function ProgramServices() {
     const headers = [
         { label: 'id', key: 'id' },
         { label: 'Descripción', key: 'description' },
-        { label: 'Precio', key: 'objetives' },
+        { label: 'Precio', key: 'objectives' },
         { label: 'Justificación', key: 'justification' },
         { label: 'País', key: 'country' },
         { label: 'Departamento', key: 'department' },
@@ -195,8 +195,10 @@ export default function ProgramServices() {
             let valuesToWrap = [];
 
             projects.data.projects.forEach(element => {
-                    if (currentProgram.data.program.name === element.laboratorio)
+                    if (currentProgram.data.program.name === element.laboratorio) {
+                        console.log("Name: " + element.name + " objetives: " + element.objetives)
                         valuesToWrap.push(element);
+                    }
                 
             });
 
@@ -218,13 +220,8 @@ export default function ProgramServices() {
 
     useEffect(() => {
         let unmounted = false;
-        getAllProjects();
-        
-        
-        
+        getAllProjects();        
         return () => { unmounted = true; };
-        
-
     }, []);
 
     return (
@@ -331,7 +328,7 @@ export default function ProgramServices() {
                                         Descripción: {project.description}
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary">
-                                        Precio: {project.objectives ? project.objectives : 0}
+                                        Precio: {project.objetives ? project.objetives : 0}
                                     </Typography>
                                 </CardContent>
 
