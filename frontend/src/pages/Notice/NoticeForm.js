@@ -10,6 +10,8 @@ import AlertMessage from '../../components/AlertMessage';
 import axios from 'axios';
 import CircularStatic from '../../components/CircularStatic'
 import ImageComponent from '../../components/ImageComponent';
+import i18n from '../../i18n';
+import i18next from '../../i18n';
 
 const initialValues = {
     name: '',
@@ -181,7 +183,7 @@ export default function NoticeForm() {
                         <Grid item xs={6}>
                             <Controls.Input
                                 name="name"
-                                label="Título de la noticia"
+                                label={i18n.t('noticeform1')}
                                 value={values.name}
                                 onChange={handleInputChange}
                                 error={errors.name}
@@ -190,7 +192,7 @@ export default function NoticeForm() {
                         <Grid item xs={9}>
                             <Controls.TextArea
                                 name="entrada"
-                                label="Noticia"
+                                label={i18n.t('noticeform2')}
                                 value={values.entrada}
                                 onChange={handleInputChange}
                                 error={errors.entrada}
@@ -211,10 +213,10 @@ export default function NoticeForm() {
 
                             <Controls.Button
                                 type="submit"
-                                text="Guardar"
+                                text={i18n.t('evidence10')}
                             />
                             <Controls.Button
-                                text="Limpiar"
+                                text={i18n.t('evidence11')}
                                 color="default"
                                 onClick={resetForm} />
                         </Grid>

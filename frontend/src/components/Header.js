@@ -11,8 +11,11 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import Avatar from '@material-ui/core/Avatar';
 import axios from "axios";
 import {useState, useEffect} from 'react';
+import i18next, { changeLanguage } from 'i18next';
+import i18n from '../i18n';
 
 const drawerWidth = 240;
+
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -53,13 +56,12 @@ export default function Header() {
         let unmounted = false;
         await headerName();
         return () => {unmounted = true};
-    }, []);
+    }, [localStorage]);
 
     const headerName = async () => {
         try {
             const uid = localStorage.getItem("uid");
             let response = await axios.get(`${process.env.REACT_APP_API_URL}/api/private/users/${uid}`, config);
-            console.log("WENAAAS");
             console.log(response);
             setHeader(response.data.user.roles[0].projectName);
         }
@@ -77,11 +79,14 @@ export default function Header() {
         }
         return name;
     }
-
+    
+    
     const handleMenu = (event) => {
+        console.log('hi')
         setAnchorEl(event.currentTarget);
     };
-
+    
+    
     const handleClose = () => {
         setAnchorEl(null);
     };
@@ -123,9 +128,40 @@ export default function Header() {
                                 {setName()}
                             </Typography>
                         </IconButton>
-                        
                     </div>
                     <div className={classes.toolbarButtons}>
+                        <IconButton
+                            aria-label="language to use - es"
+                            aria-controls="menu-appbar-es"
+                            aria-haspopup="true"
+                            size='small'
+                            color="inherit">
+                                <img
+                                    src = "es.png" width={30} height={20}
+                                    variant="square" 
+                                    onClick={() => {
+                                        console.log("handleChangeLanguage start")
+                                        window.localStorage.setItem('lan', 'es')
+                                        window.location.reload()}}
+                                />
+                        </IconButton>
+                        <IconButton
+                            aria-label="language to use - en"
+                            aria-controls="menu-appbar-en"
+                            aria-haspopup="true"
+                            
+                            color="inherit">
+                                <img
+                                    src = "en.svg" width={35} height={30}
+                                    variant="square" 
+                                    onClick={() => {
+                                        console.log("handleChangeLanguage start")
+                                        window.localStorage.setItem('lan', 'en')
+                                        window.location.reload()
+                                    }}
+                                />
+                        </IconButton>
+                        
                         <IconButton
                             aria-label="account of current user"
                             aria-controls="menu-appbar"
@@ -156,8 +192,8 @@ export default function Header() {
                             open={open}
                             onClose={handleClose}
                         >
-                            <MenuItem onClick={profileHandler}>Ver Perfil</MenuItem>
-                            <MenuItem onClick={logoutHandler}>Salir</MenuItem>
+                            <MenuItem onClick={profileHandler}>{i18n.t('header1')}</MenuItem>
+                            <MenuItem onClick={logoutHandler}>{i18n.t('header2')}</MenuItem>
                         </Menu>
                     </div>
 

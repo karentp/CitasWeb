@@ -27,6 +27,7 @@ import { deleteEvidence } from '../../services/evidenceService';
 import Controls from "../../components/controls/Controls";
 import { CSVLink } from "react-csv"
 import DownloadIcon from '@mui/icons-material/Download';
+import i18n from '../../i18n';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -196,26 +197,26 @@ export default function ViewEvidence() {
                 aria-labelledby="alert-dialog-slide-title"
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle id="alert-dialog-slide-title">{"¿Desea borrar esta Evidencia?"}</DialogTitle>
+                <DialogTitle id="alert-dialog-slide-title">{i18n.t('viewevidence1')}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        Esta decisión no es reversible.
+                        {i18n.t('viewevidence2')}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Cancelar
+                    {i18n.t('viewevidence3')}
                     </Button>
                     <Button onClick={handleAccept} color="secondary">
-                        Eliminar
+                    {i18n.t('viewevidence4')}
                     </Button>
                 </DialogActions>
             </Dialog>
 
 
             <PageHeader
-                title="Información sobre las Evidencias"
-                subTitle="Acá se mostrarán todas las evidencias del sistema"
+                title={i18n.t('viewevidence5')}
+                subTitle={i18n.t('viewevidence6')}
                 icon={<InfoIcon fontSize="large"
                 />}
             />
@@ -230,11 +231,11 @@ export default function ViewEvidence() {
             >
                 <Paper className={classes.paper} elevation={3}>
                     <Box sx={{ width: 'auto' }} padding>
-                        <Typography variant="h6" align="center">¿Se necesita una nueva evidencia?</Typography>
+                        <Typography variant="h6" align="center">{i18n.t('viewevidence7')}</Typography>
 
                     </Box>
                     <Box textAlign='center'>
-                        <Controls.Button color="primary" variant="contained" component={Link} to={`/evidence/create/`} text="Crear Evidencia" />
+                        <Controls.Button color="primary" variant="contained" component={Link} to={`/evidence/create/`} text={i18n.t('viewevidence8')} />
                     </Box>
                 </Paper>
 
@@ -280,7 +281,7 @@ export default function ViewEvidence() {
                         direction="row"
                         className={classes.csvContainer}
                     >
-                        <Tooltip title="Exportar evidencias">
+                        <Tooltip title={i18n.t('viewevidence9')}>
                             <div className={classes.iconContainer}>
                                 <CSVLink {...csvReport} style={{ color: 'white', marginLeft: '10px' }}>
                                     <DownloadIcon fontSize={'large'} />
@@ -291,9 +292,9 @@ export default function ViewEvidence() {
                     <Table stickyHeader aria-label="sticky table" className={classes.container}>
                         <TableHead>
                             <TableRow className={classes.thead}>
-                                <TableCell>Nombre</TableCell>
-                                <TableCell>Descripción</TableCell>
-                                <TableCell className={classes.programholder}>Acciones</TableCell>
+                                <TableCell>{i18n.t('evidence8')}</TableCell>
+                                <TableCell>{i18n.t('evidence9')}</TableCell>
+                                <TableCell className={classes.programholder}>{i18n.t('viewevidence10')}</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -308,13 +309,13 @@ export default function ViewEvidence() {
                                             justifyContent="center"
                                             alignItems="center"
                                         >
-                                            <Tooltip title="Editar">
+                                            <Tooltip title={i18n.t('viewevidence11')}>
                                                 <Button color="primary" variant="contained" style={{ marginRight: 10 }} component={Link} to={`/evidence/update/${evidence._id}`}><ModeEditIcon /></Button>
                                             </Tooltip>
-                                            <Tooltip title="Información">
+                                            <Tooltip title={i18n.t('viewevidence12')}>
                                                 <Button className={classes.button} variant="contained" style={{ marginRight: 10 }} component={Link} to={`/evidence/show/${evidence._id}`}><InfoIcon /></Button>
                                             </Tooltip>
-                                            <Tooltip title="Eliminar">
+                                            <Tooltip title={i18n.t('viewevidence13')}>
                                                 <Button color="secondary" variant="contained" onClick={() => {
                                                     setOpenDialog(true); setEvidenceId(evidence._id);
                                                 }}><DeleteIcon /></Button>

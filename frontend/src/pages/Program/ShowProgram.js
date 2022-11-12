@@ -17,6 +17,7 @@ import defaultImg from '../../assets/img/defaultImg.jpeg'
 import { CSVDownloader } from 'react-papaparse'
 import DownloadIcon from '@mui/icons-material/Download';
 import Tooltip from '@mui/material/Tooltip';
+import i18n from '../../i18n';
 
 const useStyles = makeStyles(theme => ({
     cardContainer: {
@@ -147,7 +148,7 @@ export default function ShowProjects() {
             </div>
 
             <PageHeader
-                title="Información detallada sobre un laboratorio"
+                title={i18n.t('programservice1')}
                 icon={<InfoIcon fontSize="large"
                 />}
             />
@@ -177,13 +178,13 @@ export default function ShowProjects() {
 
                     <CardActions>
                         <Typography variant="subtitle1" color="primary" component="p">
-                            <span>Teléfono:</span>
+                            <span>{i18n.t('programform3')}</span>
                             {objetivesProgram ? objetivesProgram : ''}
                         </Typography>
                     </CardActions>
                     <CardActions>
                         <Typography variant="subtitle1" color="primary" component="p">
-                            <span>Correo Electrónico:</span>
+                            <span>{i18n.t('programform4')}</span>
                             {definitionProgram ? definitionProgram : ''}
                         </Typography>
                         {/* <Tooltip title="Exportar laboratorio">

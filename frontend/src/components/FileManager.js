@@ -4,6 +4,7 @@ import { CSVReader, jsonToCSV, readString } from "react-papaparse";
 
 import Controls from "./controls/Controls";
 import { addData } from "../services/dataService";
+import i18n from '../i18n';
 
 const buttonRef = React.createRef();
 
@@ -83,7 +84,7 @@ export default function FileManager({setCSVData}) {
                 paddingLeft: 0,
                 paddingRight: 0,
               }}
-              text="Elegir archivo"
+              text={i18n.t('filemanager1')}
             />
 
             <div
@@ -112,7 +113,7 @@ export default function FileManager({setCSVData}) {
                 paddingRight: 20,
               }}
               onClick={handleRemoveFile}
-              text="Eliminar"
+              text={i18n.t('filemanager1')}
             />
           </aside>
         )}

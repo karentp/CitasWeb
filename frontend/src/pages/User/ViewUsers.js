@@ -26,6 +26,7 @@ import Modal from '@mui/material/Modal';
 import AssignPermission from './AssignPermission';
 import Test from './Test';
 import { resolveCname } from 'dns';
+import i18n from '../../i18n';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -187,26 +188,26 @@ export default function ViewUsers() {
                 aria-labelledby="alert-dialog-slide-title"
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle id="alert-dialog-slide-title">{"¿Desea borrar este usuario?"}</DialogTitle>
+                <DialogTitle id="alert-dialog-slide-title">{i18n.t('register7')}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        Esta decisión no es reversible.
+                        {i18n.t('register8')}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Cancelar
+                        {i18n.t('register9')}
                     </Button>
                     <Button onClick={handleAccept} color="secondary">
-                        Eliminar
+                        {i18n.t('register10')}
                     </Button>
                 </DialogActions>
             </Dialog>
 
 
             <PageHeader
-                title="Información sobre los usuarios"
-                subTitle="Acá se muestran todos los usuarios en el sistema"
+                title={i18n.t('register11')}
+                subTitle={i18n.t('register12')}
                 icon={<InfoIcon fontSize="large"
                 />}
             />
@@ -224,11 +225,11 @@ export default function ViewUsers() {
             >
                 <Paper className={classes.paper} elevation={3}>
                     <Box sx={{ width: 'auto' }} padding>
-                        <Typography variant="h6" align="center">¿Se necesita un nuevo usuario?</Typography>
+                        <Typography variant="h6" align="center">{i18n.t('register13')}</Typography>
 
                     </Box>
                     <Box textAlign='center'>
-                        <Controls.Button color="primary" variant="contained" component={Link} to={`/register/`} text="Crear usuario" />
+                        <Controls.Button color="primary" variant="contained" component={Link} to={`/register/`} text={i18n.t('register14')} />
                     </Box>
 
                 </Paper>
@@ -255,10 +256,10 @@ export default function ViewUsers() {
                     <Table stickyHeader aria-label="sticky table" className={classes.container}>
                         <TableHead>
                             <TableRow className={classes.thead}>
-                                <TableCell>Usuario</TableCell>
+                                <TableCell>{i18n.t('register15')}</TableCell>
                                 <TableCell>Email</TableCell>
-                                <TableCell>Tipo</TableCell>
-                                <TableCell className={classes.programholder}>Acciones</TableCell>
+                                <TableCell>{i18n.t('register16')}</TableCell>
+                                <TableCell className={classes.programholder}>{i18n.t('register17')}</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -274,10 +275,10 @@ export default function ViewUsers() {
                                             justifyContent="center"
                                             alignItems="center"
                                         >
-                                            <Tooltip title="Información">
+                                            <Tooltip title={i18n.t('register18')}>
                                                 <Button className={classes.button} variant="contained" style={{ marginRight: 10 }} component={Link} to={`/profile/${user._id}`}><InfoIcon /></Button>
                                             </Tooltip>
-                                            <Tooltip title="Eliminar">
+                                            <Tooltip title={i18n.t('register10')}>
                                                 <Button color="secondary" variant="contained" onClick={() => {
                                                     setOpenDialog(true); setUserId(user._id);
                                                 }}><DeleteIcon /></Button>

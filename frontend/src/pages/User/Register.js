@@ -11,6 +11,8 @@ import Grid from '@mui/material/Grid'
 import Tooltip from '@mui/material/Tooltip';
 import { useForm, Form } from '../../components/useForm';
 import AlertMessage from '../../components/AlertMessage';
+import i18n from '../../i18n';
+import i18next from "../../i18n";
 
 const initialValues = {
   email: '',
@@ -83,9 +85,9 @@ const Register = ({ }) => {
   // ]
 
   const typeItems = [
-    { id: 'user', title: 'Usuario' },
-    { id: 'admin', title: 'Administrador' },
-    { id: 'gestor', title: 'Gestor' },
+    { id: 'user', title: i18next.t('register15') },
+    { id: 'admin', title: i18next.t('register19') },
+    { id: 'gestor', title: i18next.t('register20') },
   ]
 
   const registerHandler = async (e) => {
@@ -138,11 +140,11 @@ const Register = ({ }) => {
   const validate = (fieldValues = values) => {
     let temp = { ...errors }
     if ('email' in fieldValues)
-      temp.email = fieldValues.email ? "" : "Este campo es obligatorio."
+      temp.email = fieldValues.email ? "" : i18next.t('register21')
     if ('password' in fieldValues)
-      temp.password = fieldValues.password ? "" : "Este campo es obligatorio."
+      temp.password = fieldValues.password ? "" : i18next.t('register21')
     if ('confirmPassword' in fieldValues)
-      temp.confirmPassword = fieldValues.confirmPassword ? "" : "Este campo es obligatorio."
+      temp.confirmPassword = fieldValues.confirmPassword ? "" : i18next.t('register21')
     setErrors({
       ...temp
     })
@@ -176,8 +178,8 @@ const Register = ({ }) => {
           </Fade>
           <br />
         </div>
-        <AlertMessage errorMessage={error} successMessage={"Se ha creado un nuevo usuario!"} openMessage={open}/>
-        <h3 className="register-screen__title">Crear una cuenta</h3>
+        <AlertMessage errorMessage={error} successMessage={i18n.t('register1')} openMessage={open}/>
+        <h3 className="register-screen__title">{i18n.t('register2')}</h3>
         {error && <span className="error-message">{error}</span>}
         <Grid item xs={12}>
           <Controls.Input
@@ -191,7 +193,7 @@ const Register = ({ }) => {
           />
           <Controls.Input
             name="password"
-            label="Contraseña"
+            label={i18n.t('login2')}
             type="password"
             value={values.password}
             onChange={handleInputChange}
@@ -200,7 +202,7 @@ const Register = ({ }) => {
           />
           <Controls.Input
             name="confirmPassword"
-            label="Confirmar Contraseña"
+            label={i18n.t('register3')}
             type="password"
             value={values.confirmPassword}
             onChange={handleInputChange}
@@ -212,7 +214,7 @@ const Register = ({ }) => {
           <Grid item>
             <Controls.RadioGroup
               name="type"
-              label="Tipo de usuario"
+              label={i18n.t('register4')}
               value={values.type}
               // onChange={(e) => {
               //   setType(e.target.value);
@@ -226,7 +228,7 @@ const Register = ({ }) => {
             />
           </Grid>
           <Grid item>
-            <Tooltip title="El administrador tiene acceso a todas las funcionalidades del sistema, mientras un usuario tiene acceso limitado asociado a un proyecto.">
+            <Tooltip title={i18n.t('register5')}>
               <HelpIcon color={"success"} />
             </Tooltip>
 
@@ -267,7 +269,7 @@ const Register = ({ }) => {
         </div>*/}
         <br />
         <button type="submit" className="btn btn-primary">
-          Registrar Cuenta
+          {i18n.t('register6')}
         </button>
       </Form>
     </div>

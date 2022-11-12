@@ -12,7 +12,7 @@ import AlertMessage from '../../components/AlertMessage';
 import ImageComponent from '../../components/ImageComponent';
 import MenuItem from '@mui/material/MenuItem';
 import CalendarTemplate from './Calendar';
-
+import i18n from '../../i18n';
 
 const initialBValues = {
     name: '',
@@ -280,7 +280,7 @@ export default function AvailabilityEdit() {
         <div>
             <PageHeader
                 title={title}
-                subTitle={`Formulario para ${type} un servicio`}
+                subTitle={i18n('availability1')}
                 icon={<EcoIcon fontSize="large" color='primary'
                 />}
             />

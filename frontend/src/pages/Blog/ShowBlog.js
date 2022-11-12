@@ -18,6 +18,8 @@ import { CSVDownloader } from 'react-papaparse'
 import DownloadIcon from '@mui/icons-material/Download';
 import Tooltip from '@mui/material/Tooltip';
 
+import i18n from '../../i18n/index.js';
+
 const useStyles = makeStyles(theme => ({
     cardContainer: {
         width: 800,

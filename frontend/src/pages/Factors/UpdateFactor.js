@@ -14,6 +14,8 @@ import Fade from "@material-ui/core/Fade";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { editFactor } from "../../services/factorService";
+import i18n from '../../i18n';
+import i18next from '../../i18n/index.js';
 
 const typeItems = [
   { id: "value", title: "Valor" },
@@ -64,11 +66,11 @@ export default function Updatefactor() {
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
     if ("name" in fieldValues)
-      temp.name = fieldValues.name ? "" : "Este campo es obligatorio.";
+      temp.name = fieldValues.name ? "" : i18next.t('blog21');
     if ("description" in fieldValues)
       temp.description = fieldValues.description
         ? ""
-        : "Este campo es obligatorio.";
+        : i18next.t('blog21');
     setErrors({
       ...temp,
     });
@@ -130,7 +132,7 @@ export default function Updatefactor() {
   return (
     <div>
       <PageHeader
-        title="Editar Factor"        
+        title={i18n.t('updatefactor1')}       
         icon={<EcoIcon fontSize="large" color="primary" />}
       />
       <div className={classes.programholder} hidden={!loading}>
@@ -170,13 +172,13 @@ export default function Updatefactor() {
             <Grid item xs={6}>
               <Controls.Input
                 name="name"
-                label="Nombre"
+                label={i18n.t('createfactor3')}
                 value={values.name}
                 onChange={handleInputChange}
                 error={errors.name}
               />
               <Controls.Input
-                label="Descripción"
+                label={i18n.t('createfactor4')}
                 name="description"
                 value={values.description}
                 onChange={handleInputChange}
@@ -186,16 +188,16 @@ export default function Updatefactor() {
             <Grid item xs={6}>
               <Controls.Checkbox
                 name="isDependent"
-                label="Es dependiente"
+                label={i18n.t('createfactor6')}
                 value={values.isDependent}
                 onChange={handleInputChange}
               />
 
               <div>
-                <Controls.Button type="submit" text="Editar" />
+                <Controls.Button type="submit" text={i18n.t('updatefactor2')} />
 
                 <Controls.Button
-                  text="Limpiar"
+                  text={i18n.t('createfactor8')}
                   color="default"
                   onClick={resetForm}
                 />

@@ -27,6 +27,7 @@ import { deleteNotice } from '../../services/noticeService';
 import Controls from "../../components/controls/Controls";
 import { CSVLink } from "react-csv"
 import DownloadIcon from '@mui/icons-material/Download';
+import i18n from '../../i18n';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -196,26 +197,26 @@ export default function ViewNotice() {
                 aria-labelledby="alert-dialog-slide-title"
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle id="alert-dialog-slide-title">{"¿Desea borrar este proyecto?"}</DialogTitle>
+                <DialogTitle id="alert-dialog-slide-title">{i18n.t('viewnotice1')}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        Esta decisión no es reversible.
+                        {i18n.t('viewfactors2')}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Cancelar
+                        {i18n.t('viewfactors3')}
                     </Button>
                     <Button onClick={handleAccept} color="secondary">
-                        Eliminar
+                        {i18n.t('viewfactors4')}
                     </Button>
                 </DialogActions>
             </Dialog>
 
 
             <PageHeader
-                title="Información sobre las noticias"
-                subTitle="Acá se mostrarán todos las noticias del sistema"
+                title={i18n.t('viewnotice2')}
+                subTitle={i18n.t('viewnotice3')}
                 icon={<InfoIcon fontSize="large"
                 />}
             />
@@ -230,11 +231,11 @@ export default function ViewNotice() {
             >
                 <Paper className={classes.paper} elevation={3}>
                     <Box sx={{ width: 'auto' }} padding>
-                        <Typography variant="h6" align="center">¿Se necesita una nueva noticia?</Typography>
+                        <Typography variant="h6" align="center">{i18n.t('viewnotice5')}</Typography>
 
                     </Box>
                     <Box textAlign='center'>
-                        <Controls.Button color="primary" variant="contained" component={Link} to={`/notice/create/`} text="Crear noticia" />
+                        <Controls.Button color="primary" variant="contained" component={Link} to={`/notice/create/`} text={i18n.t('viewnotice4')} />
                     </Box>
                 </Paper>
 
@@ -280,7 +281,7 @@ export default function ViewNotice() {
                         direction="row"
                         className={classes.csvContainer}
                     >
-                        <Tooltip title="Exportar noticias">
+                        <Tooltip title={i18n.t('viewnotice6')}>
                             <div className={classes.iconContainer}>
                                 <CSVLink {...csvReport} style={{ color: 'white', marginLeft: '10px' }}>
                                     <DownloadIcon fontSize={'large'} />
@@ -308,13 +309,13 @@ export default function ViewNotice() {
                                             justifyContent="center"
                                             alignItems="center"
                                         >
-                                            <Tooltip title="Editar">
+                                            <Tooltip title={i18n.t('viewnotice7')}>
                                                 <Button color="primary" variant="contained" style={{ marginRight: 10 }} component={Link} to={`/notice/update/${notice._id}`}><ModeEditIcon /></Button>
                                             </Tooltip>
-                                            <Tooltip title="Información">
+                                            <Tooltip title={i18n.t('viewevidene12')}>
                                                 <Button className={classes.button} variant="contained" style={{ marginRight: 10 }} component={Link} to={`/notice/show/${notice._id}`}><InfoIcon /></Button>
                                             </Tooltip>
-                                            <Tooltip title="Eliminar">
+                                            <Tooltip title={i18n.t('viewevidence13')}>
                                                 <Button color="secondary" variant="contained" onClick={() => {
                                                     setOpenDialog(true); setNoticeId(notice._id);
                                                 }}><DeleteIcon /></Button>

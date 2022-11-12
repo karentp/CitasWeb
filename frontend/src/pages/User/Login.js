@@ -9,6 +9,7 @@ import AlertMessage from '../../components/AlertMessage';
 import Grid from '@mui/material/Grid'
 import Controls from "../../components/controls/Controls";
 import logo from '../../assets/img/logo.png'
+import i18n from '../../i18n';
 
 const initialValues = {
   email: '',
@@ -131,7 +132,7 @@ const Login = ({ history }) => {
             </Fade>
             <br />
           </div>
-          <h3 className="login-screen__title">Inicia Sesión</h3>
+          <h3 className="login-screen__title">{i18n.t('login1')}</h3>
           <AlertMessage errorMessage={error} successMessage={""} openMessage={open} />
 
           <Grid item xs={12}>
@@ -146,7 +147,7 @@ const Login = ({ history }) => {
             />
             <Controls.Input
               name="password"
-              label="Contraseña"
+              label={i18n.t('login2')}
               type="password"
               value={values.password}
               onChange={handleInputChange}
@@ -155,7 +156,7 @@ const Login = ({ history }) => {
             />
           </Grid>
           <button type="submit" className="btn btn-primary">
-            Inicia Sesión
+            {i18n.t('login1')}
           </button>
         </Form>
       </div>

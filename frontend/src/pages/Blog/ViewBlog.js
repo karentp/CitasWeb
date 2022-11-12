@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, PureComponent } from 'react';
 import { Table, TableHead, TableCell, Paper, TableRow, TableBody, Button, makeStyles, CssBaseline, Grid } from '@material-ui/core'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -32,6 +32,8 @@ import Controls from "../../components/controls/Controls";
 import { CSVLink } from "react-csv"
 import DownloadIcon from '@mui/icons-material/Download';
 import defaultImg from '../../assets/img/defaultImg.jpeg';
+
+import i18n from '../../i18n';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -201,7 +203,7 @@ export default function ViewBlog() {
                 aria-labelledby="alert-dialog-slide-title"
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle id="alert-dialog-slide-title">{"¿Desea borrar este proyecto?"}</DialogTitle>
+                <DialogTitle id="alert-dialog-slide-title">{i18n.t("blog14")}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
                         Esta decisión no es reversible.
@@ -219,8 +221,8 @@ export default function ViewBlog() {
 
 
             <PageHeader
-                title="Información sobre los laboratorios"
-                subTitle="Acá se mostrarán todos los laboratorios  del sistema"
+                title={i18n.t("viewblog1")}
+                subTitle={i18n.t("viewblog2")}
                 icon={<InfoIcon fontSize="large"
                 />}
             />
@@ -284,7 +286,7 @@ export default function ViewBlog() {
                             </CardContent>
 
                             <CardActions>
-                                <Button className={classes.button} variant="contained" style={{ marginRight: 10 }} component={Link} to={`/program/services/${program._id}`}><InfoIcon />Ver servicios ofrecidos</Button>
+                                <Button className={classes.button} variant="contained" style={{ marginRight: 10 }} component={Link} to={`/program/services/${program._id}`}><InfoIcon />{i18n.t('viewblog3')}</Button>
                             </CardActions>
                         </Card>
                     </Grid>

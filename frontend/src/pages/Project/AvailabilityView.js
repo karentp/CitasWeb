@@ -31,6 +31,7 @@ import { jsonToCSV, CSVDownloader } from 'react-papaparse';
 import { getUsers, editRoles } from '../../services/userService';
 import { version } from 'react-dom/cjs/react-dom.development';
 import { render } from "react-dom";
+import i18n from '../../i18n';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -299,18 +300,18 @@ export default function AvailabilityView() {
                 aria-labelledby="alert-dialog-slide-title"
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle id="alert-dialog-slide-title">{"¿Desea borrar este servicio?"}</DialogTitle>
+                <DialogTitle id="alert-dialog-slide-title">{i18n.t('availability5')}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        Esta decisión no es reversible.
+                        {i18n.t('availability4')}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Cancelar
+                        {i18n.t('availability5')}
                     </Button>
                     <Button onClick={handleAccept} color="secondary">
-                        Eliminar
+                        {i18n.t('availability6')}
                     </Button>
                 </DialogActions>
             </Dialog>
@@ -323,26 +324,26 @@ export default function AvailabilityView() {
                 aria-labelledby="alert-dialog-slide-title"
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle id="alert-dialog-slide-title">{"¿Desea abandonar este servicio?"}</DialogTitle>
+                <DialogTitle id="alert-dialog-slide-title">{i18n.t('availability7')}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        Esta decisión no es reversible.
+                        {i18n.t('availability4')}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCloseAbandon} color="primary">
-                        Cancelar
+                        {i18n.t('availability5')}
                     </Button>
                     <Button onClick={handleAcceptAbandon} color="secondary">
-                        Abandonar
+                        {i18n.t('availability6')}
                     </Button>
                 </DialogActions>
             </Dialog>
 
 
             <PageHeader
-                title="Información sobre los horarios"
-                subTitle="Acá se muestran todos los horarios de los servicios en el sistema"
+                title={i18n.t('availability8')}
+                subTitle={i18n.t('availability9')}
                 icon={<InfoIcon fontSize="large"
                 />}
             />
@@ -357,7 +358,7 @@ export default function AvailabilityView() {
             >
                 <Paper className={classes.paper} elevation={3}>
                     <Box sx={{ width: 'auto' }} padding>
-                        <Typography variant="h6" align="center">Horarios para el servicio</Typography>
+                        <Typography variant="h6" align="center">{i18n.t('availability10')}</Typography>
                     </Box>
 
                 </Paper>
@@ -386,7 +387,7 @@ export default function AvailabilityView() {
                         direction="row"
                         className={classes.csvContainer}
                     >
-                        <Tooltip title="Exportar servicios">
+                        <Tooltip title={i18n.t('availability11')}>
                             <div className={classes.iconContainer}>
                                 <CSVLink {...csvReport} style={{ color: 'white', marginLeft: '10px' }}>
                                     <DownloadIcon fontSize={'large'} />
@@ -398,10 +399,10 @@ export default function AvailabilityView() {
 
                         <TableHead>
                             <TableRow className={classes.thead}>
-                                <TableCell className={classes.cell}>Nombre</TableCell>
-                                <TableCell className={classes.cell}>Horarios para este servicio</TableCell>
+                                <TableCell className={classes.cell}>{i18n.t('availability12')}</TableCell>
+                                <TableCell className={classes.cell}>{i18n.t('availability13')}</TableCell>
 
-                                <TableCell className={classes.programholder} style={{ paddingTop: '0px' }}>Acciones</TableCell>
+                                <TableCell className={classes.programholder} style={{ paddingTop: '0px' }}>{i18n.t('availability14')}</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -424,7 +425,7 @@ export default function AvailabilityView() {
                                             alignItems="center"
                                         >
                                             <Tooltip title="Agregar Espacios">
-                                                <Button color="primary" variant="contained" style={{ marginRight: 10 }} component={Link} to={`/availability/${project._id}`}><ModeEditIcon />Agregar Espacios</Button>
+                                                <Button color="primary" variant="contained" style={{ marginRight: 10 }} component={Link} to={`/availability/${project._id}`}><ModeEditIcon />{i18n.t('availability15')}</Button>
                                             </Tooltip>
 
 

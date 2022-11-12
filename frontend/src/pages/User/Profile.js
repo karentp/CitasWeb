@@ -21,6 +21,8 @@ import WorkIcon from '@mui/icons-material/Work';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import Header from "../../components/Header";
 import SideMenu from "../../components/SideMenu";
+import i18n from '../../i18n';
+import i18next from '../../i18n';
 
 const useStyles = makeStyles(theme => ({
     programholder: {
@@ -98,7 +100,7 @@ export default function Profile() {
         if ('phone' in fieldValues){
             //temp.phone = fieldValues.phone.length === 8 ? "": "El número debe ser de 8 dígitos"            
             if(fieldValues.phone)
-                temp.phone = !pattern.test(fieldValues.phone) ? "Por favor ingrese solo números": "";
+                temp.phone = !pattern.test(fieldValues.phone) ? i18next.t('profile13'): "";
         }
         setErrors({
             ...temp
@@ -197,15 +199,15 @@ export default function Profile() {
             <SideMenu />
             <CircularStatic progress={progress} hidden={!loading} />
             <PageHeader
-                title="Información detallada de un usuario"
-                subTitle="Puedes ver y modificar algunos campos"
+                title={i18n.t('profile1')}
+                subTitle={i18n.t('profile2')}
                 icon={<InfoIcon fontSize="large"
                 />}
             />
             <Grid item className={classes.right}>
                 <Paper className={classes.pageContent}>
                     <Form onSubmit={handleSubmit}>
-                        <AlertMessage errorMessage={error} successMessage={"Se ha actualizado el usuario!"} openMessage={open} />
+                        <AlertMessage errorMessage={error} successMessage={i18n.t('profile3')} openMessage={open} />
                         <div hidden={!isUser}>
                             <Grid container
                                 direction="row"
@@ -214,7 +216,7 @@ export default function Profile() {
                                 style={{ textAlign: 'center' }}>    
                                 <Controls.Checkbox
                                         name="edit"
-                                        label="Editar usuario"
+                                        label={i18n.t('profile4')}
                                         value={edit}
                                         style={{alignItems: "center"}}
                                         onChange={handleChange}                                    
@@ -229,7 +231,7 @@ export default function Profile() {
                             <Grid item xs={12} className={classes.gridContainer}>
                                 <Controls.Input
                                     name="name"
-                                    label="Nombre"
+                                    label={i18n.t('profile5')}
                                     value={values.name}
                                     onChange={handleInputChange}
                                     error={errors.name}
@@ -238,7 +240,7 @@ export default function Profile() {
                             </Grid>
                             <Grid item xs={12} className={classes.gridContainer}>
                                 <Controls.Input
-                                    label="Primer apellido"
+                                    label={i18n.t('profile6')}
                                     name="firstlastname"
                                     value={values.firstlastname}
                                     onChange={handleInputChange}
@@ -248,7 +250,7 @@ export default function Profile() {
                             </Grid>
                             <Grid item xs={12} className={classes.gridContainer}>
                                 <Controls.Input
-                                    label="Segundo apellido"
+                                    label={i18n.t('profile7')}
                                     name="secondlastname"
                                     value={values.secondlastname}
                                     onChange={handleInputChange}
@@ -259,7 +261,7 @@ export default function Profile() {
                             <Grid item xs={12} className={classes.gridContainer}>
                                 <Controls.Input
                                     name="phone"
-                                    label="Número"
+                                    label={i18n.t('profile8')}
                                     value={values.phone}
                                     onChange={handleInputChange}
                                     error={errors.phone}
@@ -271,7 +273,7 @@ export default function Profile() {
                             <Grid item xs={12}  className={classes.gridContainer}>
                                 <Controls.Input
                                     name="details"
-                                    label="Dirección"
+                                    label={i18n.t('profile9')}
                                     value={values.details}
                                     onChange={handleInputChange}
                                     error={errors.details}
@@ -290,11 +292,11 @@ export default function Profile() {
                                 <div hidden={!edit}>
                                     <Controls.Button
                                         type="submit"
-                                        text="Guardar"
+                                        text={i18n.t('profile10')}
                                     />
 
                                     <Controls.Button
-                                        text="Limpiar"
+                                        text={i18n.t('profile11')}
                                         color="inherit"
                                         onClick={resetForm} />
                                 </div>
@@ -320,7 +322,7 @@ export default function Profile() {
                                         <PeopleAltIcon />
                                     </Avatar>
                                 </ListItemAvatar>
-                                <ListItemText primary="Usuario" secondary={values ? values.username : ""} />
+                                <ListItemText primary={i18n.t('profile12')} secondary={values ? values.username : ""} />
                             </ListItem>
                         </List>
                     </Paper>

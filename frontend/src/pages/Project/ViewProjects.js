@@ -31,6 +31,7 @@ import { jsonToCSV, CSVDownloader } from 'react-papaparse';
 import {getUsers, editRoles} from '../../services/userService';
 import { version } from 'react-dom/cjs/react-dom.development';
 import { render } from "react-dom";
+import i18n from '../../i18n';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -250,18 +251,18 @@ export default function ViewProject() {
                 aria-labelledby="alert-dialog-slide-title"
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle id="alert-dialog-slide-title">{"¿Desea borrar este servicio?"}</DialogTitle>
+                <DialogTitle id="alert-dialog-slide-title">{i18n.t('availability3')}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        Esta decisión no es reversible.
+                        {i18n.t('availability4')}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Cancelar
+                        {i18n.t('availability5')}
                     </Button>
                     <Button onClick={handleAccept} color="secondary">
-                        Eliminar
+                        {i18n.t('availability6')}
                     </Button>
                 </DialogActions>
             </Dialog>
@@ -274,26 +275,26 @@ export default function ViewProject() {
                 aria-labelledby="alert-dialog-slide-title"
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle id="alert-dialog-slide-title">{"¿Desea abandonar este servicio?"}</DialogTitle>
+                <DialogTitle id="alert-dialog-slide-title">{i18n.t('viewproject1')}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        Esta decisión no es reversible.
+                        {i18n.t('availability4')}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCloseAbandon} color="primary">
-                        Cancelar
+                        {i18n.t('availability5')}
                     </Button>
                     <Button onClick={handleAcceptAbandon} color="secondary">
-                        Abandonar
+                        {i18n.t('availability6')}   
                     </Button>
                 </DialogActions>
             </Dialog>
 
 
             <PageHeader
-                title="Información sobre los servicios"
-                subTitle="Acá se muestran todos los servicios en el sistema"
+                title={i18n.t('viewproject2')}
+                subTitle={i18n.t('viewproject3')}
                 icon={<InfoIcon fontSize="large"
                 />}
             />
@@ -308,10 +309,10 @@ export default function ViewProject() {
             >
                 <Paper className={classes.paper} elevation={3}>
                     <Box sx={{ width: 'auto' }} padding>
-                        <Typography variant="h6" align="center">¿Se necesita un nuevo servicio?</Typography>
+                        <Typography variant="h6" align="center">{i18n.t('viewproject4')}</Typography>
                     </Box>
                     <Box textAlign='center'>
-                        <Controls.Button color="primary" variant="contained" component={Link} to={`/project/create/`} text="Crear servicio" />
+                        <Controls.Button color="primary" variant="contained" component={Link} to={`/project/create/`} text={i18n.t('viewproject5')} />
                     </Box>
 
                 </Paper>
@@ -340,7 +341,7 @@ export default function ViewProject() {
                         direction="row"
                         className={classes.csvContainer}
                     >
-                        <Tooltip title="Exportar servicios">
+                        <Tooltip title={i18n.t('viewproject6')}>
                             <div className={classes.iconContainer}>
                                 <CSVLink {...csvReport} style={{color:'white', marginLeft: '10px'}}> 
                                     <DownloadIcon fontSize={'large'} />
@@ -352,10 +353,10 @@ export default function ViewProject() {
 
                         <TableHead>
                             <TableRow className={classes.thead}>
-                                <TableCell className={classes.cell}>Nombre</TableCell>
-                                <TableCell className={classes.cell}>Descripción</TableCell>
-                                <TableCell className={classes.cell}>Precio</TableCell>
-                                <TableCell className={classes.programholder} style={{paddingTop: '0px'}}>Acciones</TableCell>
+                                <TableCell className={classes.cell}>{i18n.t('availabilty12')}</TableCell>
+                                <TableCell className={classes.cell}>{i18n.t('showproject3')}</TableCell>
+                                <TableCell className={classes.cell}>{i18n.t('projectform1')}</TableCell>
+                                <TableCell className={classes.programholder} style={{paddingTop: '0px'}}>{i18n.t('viewprogram12')}</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -373,13 +374,13 @@ export default function ViewProject() {
                                             justifyContent="center"
                                             alignItems="center"
                                         >
-                                            <Tooltip title="Editar">
+                                            <Tooltip title={i18n.t('viewprogram13')}>
                                                 <Button color="primary" variant="contained" style={{ marginRight: 10 }} component={Link} to={`/project/update/${project._id}`}><ModeEditIcon /></Button>
                                             </Tooltip>
-                                            <Tooltip title="Información">
+                                            <Tooltip title={i18n.t('viewprogram14')}>
                                                 <Button className={classes.button} variant="contained" style={{ marginRight: 10 }} component={Link} to={`/project/show/${project._id}`}><InfoIcon /></Button>
                                             </Tooltip>
-                                            <Tooltip title="Eliminar">
+                                            <Tooltip title={i18n.t('viewprogram15')}>
                                                 <Button color="secondary" variant="contained" style={{ marginRight: 10 }}  onClick={() => {
                                                     setOpenDialog(true); setProjectId(project._id);
                                                 }}><DeleteIcon /></Button>

@@ -7,6 +7,7 @@ import ShowHistogram from './ShowHistogram';
 import ToggleButton from '@mui/material/ToggleButton';
 import Grid from '@mui/material/Grid';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import i18n from '../../i18n';
 
 function ShowGraphics() {
     const { pid, bid } = useParams();
@@ -61,7 +62,7 @@ function ShowGraphics() {
                     exclusive
                     onChange={handleChange}
                 >
-                    <ToggleButton value="histogram">Histogramas</ToggleButton>
+                    <ToggleButton value="histogram">{i18n.t('showgraphic')}</ToggleButton>
                     <ToggleButton value="boxplot">Boxplots</ToggleButton>
                 </ToggleButtonGroup>
             </Grid>

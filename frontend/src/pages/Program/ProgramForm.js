@@ -10,6 +10,7 @@ import AlertMessage from '../../components/AlertMessage';
 import axios from 'axios';
 import CircularStatic from '../../components/CircularStatic'
 import ImageComponent from '../../components/ImageComponent';
+import i18n from '../../i18n';
 
 const initialValues = {
     name: '',
@@ -187,13 +188,13 @@ export default function ProgramForm() {
                         <Grid item xs={6}>
                             <Controls.Input
                                 name="name"
-                                label="Nombre"
+                                label={i18n.t('programform1')}
                                 value={values.name}
                                 onChange={handleInputChange}
                                 error={errors.name}
                             />
                             <Controls.Input
-                                label="Descripción"
+                                label={i18n.t('programform2')}
                                 name="description"
                                 value={values.description}
                                 onChange={handleInputChange}
@@ -203,13 +204,13 @@ export default function ProgramForm() {
                         <Grid item xs={6}>
                             <Controls.Input
                                 name="objetivesProgram"
-                                label="Teléfono"
+                                label={i18n.t('programform3')}
                                 value={values.objetivesProgram}
                                 onChange={handleInputChange}
                                 error={errors.objetivesProgram}
                             />
                             <Controls.Input
-                                label="Correo electrónico"
+                                label={i18n.t('programform4')}
                                 name="definitionProgram"
                                 value={values.definitionProgram}
                                 onChange={handleInputChange}

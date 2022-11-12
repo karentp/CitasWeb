@@ -27,6 +27,7 @@ import SummarizeIcon from '@mui/icons-material/Summarize';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import LinkIcon from '@mui/icons-material/Link';
 import ViewKanbanIcon from '@mui/icons-material/ViewKanban';
+import i18n from '../i18n';
 
 const drawerWidth = 240;
 
@@ -62,7 +63,6 @@ const useStyles = makeStyles((theme) => ({
 export default function SideMenu() {
 
   const [value, setValue] = useState(localStorage.getItem("type"));
-  console.log(localStorage);
 
   useEffect(() => {
     console.log(value);
@@ -98,7 +98,7 @@ export default function SideMenu() {
               <List>
             <ListItem button key={'programa'} onClick={() => moveRoute('/program')}>
               <ListItemIcon>{1 % 2 === 0 ? <InboxIcon /> : <BeenhereIcon />}</ListItemIcon>
-              <ListItemText primary={'Laboratorios'}/>
+              <ListItemText primary={i18n.t('sidemenu1')}/>
             </ListItem>
           </List>
           <Divider />
@@ -112,21 +112,21 @@ export default function SideMenu() {
               <List>
             <ListItem button key={'register'} onClick={() => moveRoute('/register')}>
               <ListItemIcon>{1 % 2 === 0 ? <InboxIcon /> : <PersonAddIcon />}</ListItemIcon>
-              <ListItemText primary={'Registrar Usuario'}/>
+              <ListItemText primary={i18n.t('sidemenu2')}/>
             </ListItem>
           </List>
           <Divider />
           <List>
             <ListItem button key={'assignRole'} onClick={() => moveRoute('/assignRole')}>
               <ListItemIcon>{1 % 2 === 0 ? <InboxIcon /> : <AssignmentIndIcon />}</ListItemIcon>
-              <ListItemText primary={'Asignar gestores de laboratorio'}/>
+              <ListItemText primary={i18n.t('sidemenu3')}/>
             </ListItem>
           </List>
           <Divider />
           <List>
             <ListItem button key={'usuarios'} onClick={() => moveRoute('/users')}>
               <ListItemIcon>{1 % 2 === 0 ? <InboxIcon /> : <PersonIcon />}</ListItemIcon>
-              <ListItemText primary={'Usuarios'}/>
+              <ListItemText primary={i18n.t('sidemenu4')}/>
             </ListItem>
           </List>
           <Divider />
@@ -137,7 +137,7 @@ export default function SideMenu() {
             <List>
             <ListItem button key={'blog'} onClick={() => moveRoute('/blog')}>
               <ListItemIcon>{1 % 2 === 0 ? <InboxIcon /> : <NoteAddIcon/>}</ListItemIcon>
-              <ListItemText primary={'Agendar servicio'}/>
+              <ListItemText primary={i18n.t('sidemenu5')}/>
             </ListItem>
           </List>
           <Divider />
@@ -154,14 +154,14 @@ export default function SideMenu() {
           <List>
             <ListItem button key={'proyecto'} onClick={() => moveRoute('/project/')}>
               <ListItemIcon>{1 % 2 === 0 ? <InboxIcon /> : <EcoIcon />}</ListItemIcon>
-              <ListItemText primary={'Servicios'}/>
+              <ListItemText primary={i18n.t('sidemenu6')}/>
             </ListItem>
           </List>
           <Divider />
           <List>
             <ListItem button key={'report'} onClick={() => moveRoute('/availability/')}>
               <ListItemIcon>{1 % 2 === 0 ? <InboxIcon /> : <SummarizeIcon/>}</ListItemIcon>
-              <ListItemText primary={'Gestionar espacios'}/>
+              <ListItemText primary={i18n.t('sidemenu7')}/>
             </ListItem>
           </List>
           <Divider />

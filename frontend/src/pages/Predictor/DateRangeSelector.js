@@ -6,6 +6,7 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import i18n from '../../i18n';
 
 export default function DateRangeSelector({ setInitialDate, setFinalDate }) {
 
@@ -29,7 +30,7 @@ export default function DateRangeSelector({ setInitialDate, setFinalDate }) {
                     <Card>
                         <CardContent>
                             <Typography variant="h6" component="div">
-                                Fecha Inicial
+                                {i18n.t('datarange1')}
                             </Typography>
                             <TextField
                                 style={{ width: "100%" }}
@@ -52,7 +53,7 @@ export default function DateRangeSelector({ setInitialDate, setFinalDate }) {
                     <Card>
                         <CardContent>
                             <Typography variant="h6" component="div">
-                                Fecha Final
+                                {i18n.t('datarange')}
                             </Typography>
                             <TextField
                                 style={{ width: "100%" }}

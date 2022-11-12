@@ -17,6 +17,7 @@ import defaultImg from '../../assets/img/defaultImg.jpeg'
 import { CSVDownloader } from 'react-papaparse'
 import DownloadIcon from '@mui/icons-material/Download';
 import Tooltip from '@mui/material/Tooltip';
+import i18n from '../../i18n';
 
 const useStyles = makeStyles(theme => ({
     cardContainer: {
@@ -142,7 +143,7 @@ export default function ShowEvidences() {
             </div>
 
             <PageHeader
-                title="Información detallada sobre una evidencia"
+                title= {i18n.t('showevidence1')}
                 icon={<InfoIcon fontSize="large"
                 />}
             />
@@ -159,7 +160,7 @@ export default function ShowEvidences() {
                     <CardMedia
                         className={classes.media}
                         image={image ? image : defaultImg}
-                        title="Contemplative Reptile"
+                        title={i18n.t('showevidence2')}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">

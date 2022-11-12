@@ -34,6 +34,7 @@ import { ScrollToTop } from '../../components/ScrollToTop'
 import { CSVDownloader } from 'react-papaparse'
 import DownloadIcon from '@mui/icons-material/Download';
 import { getPermissions } from '../../services/userService';
+import i18n from '../../i18n';
 
 const useStyles = makeStyles(theme => ({
   cardContainer: {
@@ -459,8 +460,8 @@ export default function ShowProjects() {
       </div>
 
       <PageHeader
-        title="Información detallada sobre un servicio"
-        subTitle="Se mostrará también los programas y factores asociados"
+        title={i18n.t('showproject1')}
+        subTitle={i18n.t('showproject2')}
         icon={<InfoIcon fontSize="large"
         />}
       />
@@ -481,14 +482,14 @@ export default function ShowProjects() {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              Nombre: {name ? name : 'Nombre'}
+              {i18n.t('availability12')}: {name ? name : 'Nombre'}
             </Typography>
             
             <Typography variant="subtitle1" color="textSecondary" component="p">
-              Descripción: {description ? description : 'Descripción'}
+              {i18n.t('showproject3')}: {description ? description : 'Descripción'}
             </Typography>
             <Typography variant="subtitle1" color="textSecondary" component="p">
-              Precio: {objetives ? objetives: 'Sin objetivos'}
+              {i18n.t('projectform1')}: {objetives ? objetives: 'Sin objetivos'}
             </Typography>
             
             
@@ -496,7 +497,7 @@ export default function ShowProjects() {
 
           <CardActions disableSpacing>
             <Typography variant="subtitle1" color="textSecondary" component="p">
-              ¿Servicio activo?
+              {i18n.t('showproject4')}
             </Typography>
             <Controls.Checkbox
               name="isTimeSeries"

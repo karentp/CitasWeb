@@ -11,7 +11,7 @@ import { useParams } from 'react-router-dom';
 import AlertMessage from '../../components/AlertMessage';
 import SuccessMessage from '../../components/SuccessMessage'
 import ImageComponent from '../../components/ImageComponent';
-
+import i18n from '../../i18n';
 
 const initialBValues = {
     name: '',
@@ -212,7 +212,7 @@ export default function ProjectForm() {
         <div>
             <PageHeader
                 title={title}
-                subTitle={`Formulario para ${type} un servicio`}
+                subTitle={i18n.t(`availability1' ${type} 'availability2`)}
                 icon={<EcoIcon fontSize="large" color='primary'
                 />}
             />
@@ -227,20 +227,20 @@ export default function ProjectForm() {
                             <Grid item xs={6}>
                                 <Controls.Input
                                     name="name"
-                                    label="Nombre"
+                                    label={i18n.t('availability12')}
                                     value={values.name}
                                     onChange={handleInputChange}
                                     error={errors.name}
                                 />
                                 <Controls.TextArea
-                                    label="Descripción"
+                                    label={i18n.t('viewprogram11')}
                                     name="description"
                                     value={values.description}
                                     onChange={handleInputChange}
                                     error={errors.description}
                                 />
                                 <Controls.Input
-                                    label="Precio"
+                                    label={i18n.t('projectform1')}
                                     name="objetives"
                                     value={values.objetives}
                                     onChange={handleInputChange}
@@ -248,7 +248,7 @@ export default function ProjectForm() {
                                 />
                                 <Controls.Input
                                     disabled="true"
-                                    label="Laboratorio"
+                                    label={i18n.t('projectform2')}
                                     name="laboratorio"
                                     value={labName}
                                     onChange={handleInputChange}
@@ -259,10 +259,10 @@ export default function ProjectForm() {
                             <Grid item xs={6}>
                                 <Controls.Checkbox
                                     name="isTimeSeries"
-                                    label="Activar servicio"
+                                    label={i18n.t('projectform3')}
                                     value={values.isTimeSeries}
                                     onChange={handleInputChange}
-                                    title="Se presentará como servicio activo al marcar la casilla, de lo contrario se presentará como servicio inactivo."
+                                    title={i18n.t('projectform4')}
                                 />
 
                             </Grid>
@@ -277,11 +277,11 @@ export default function ProjectForm() {
                                 <div>
                                     <Controls.Button
                                         type="submit"
-                                        text="Guardar"
+                                        text={i18n.t('projectform5')}
                                     />
 
                                     <Controls.Button
-                                        text="Limpiar"
+                                        text={i18n.t('projectform6')}
                                         color="inherit"
                                         onClick={resetForm} />
                                 </div>

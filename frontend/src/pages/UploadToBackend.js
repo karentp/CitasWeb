@@ -3,6 +3,7 @@ import { useForm, Form } from '../components/useForm';
 import Controls from "../components/controls/Controls";
 import axios from 'axios';
 import {getLocalFile} from '../services/getFileService'
+import i18n from '../../i18n';
 
 // EJEMPLO PARA SUBIR EN BACKEND
 export default function UploadToBackend() {
@@ -60,7 +61,7 @@ export default function UploadToBackend() {
         />
         <Controls.Button
           type="submit"
-          text="Agregar"
+          text={i18n.t('upload')}
         />
         <img className="activator" style={{ width: '100%', height: 300 }} src={screenShot} />
       </Form>

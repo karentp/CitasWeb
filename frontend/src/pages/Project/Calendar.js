@@ -12,6 +12,7 @@ import {
   createMuiTheme,
 } from "@material-ui/core";
 import { ArrowLeft, ArrowRight } from "@material-ui/icons";
+import i18n from '../../i18n';
 
 const CalendarTemplate = ({
   availability,
@@ -545,7 +546,7 @@ const CalendarTemplate = ({
                       onClick={handleJumpToCurrent}
                       className={classes.buttonNoMargin}
                     >
-                      Ir a mes actual
+                      {i18n.t('calendar1')}
                     </Button>
                   </Grid>
                 </Card>

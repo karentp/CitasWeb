@@ -13,6 +13,7 @@ import EcoIcon from '@material-ui/icons/Eco';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { addPrediction } from '../../services/predictionService';
+import i18n from '../../i18n';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -99,15 +100,15 @@ export default function Predictor() {
     return (
         <div>
             <PageHeader
-                title="Realizar Predicción"
-                subTitle="Siga los pasos encontrados en esta página, al finalizar, dirijase al botón al final de la página."
+                title={i18n.t('predictor1')}
+                subTitle={i18n.t('predictor2')}
                 icon={<BiotechIcon fontSize="large"
                 />}
             />
             <br />
              <PageHeader
-                title="Elija un proyecto"
-                subTitle="Elija el bióproceso al que le desea hacer una predicción."
+                title={i18n.t('predictor3')}
+                subTitle={i18n.t('predictor4')}
                 icon={<EcoIcon fontSize="large"
                 />}
             />
@@ -121,7 +122,7 @@ export default function Predictor() {
             >
                 <Paper className={classes.paper} elevation={3}>
                     <Box sx={{ width: 'auto' }} padding>
-                        <Typography variant="h5" align="center">proyecto Seleccionado:</Typography>
+                        <Typography variant="h5" align="center">{i18n.t('predictor5')}</Typography>
                         <Typography variant="h6" align="center">{projectName}</Typography>
                     </Box>
                 </Paper>
@@ -129,8 +130,8 @@ export default function Predictor() {
             </Grid>
             <br />
             <PageHeader
-                title="Elija un programa"
-                subTitle="Elija el programa realacionado al proyecto seleccionado al que le desea hacer una predicción."
+                title= {i18n.t('predictor6')}
+                subTitle={i18n.t('predictor7')}
                 icon={<LocationOnIcon fontSize="large"
                 />}
             />
@@ -144,7 +145,7 @@ export default function Predictor() {
             >
                 <Paper className={classes.paper} elevation={3}>
                     <Box sx={{ width: 'auto' }} padding>
-                        <Typography variant="h5" align="center">Programa Seleccionado:</Typography>
+                        <Typography variant="h5" align="center">{i18n.t('predictor8')}</Typography>
                         <Typography variant="h6" align="center">{programName}</Typography>
                     </Box>
                 </Paper>
@@ -152,8 +153,8 @@ export default function Predictor() {
             </Grid>
             <br />
             <PageHeader
-                title="Elija un rango de fechas"
-                subTitle="Los datos encontrados en este rango de fecha serán utilizados para realizar la predicción."
+                title={i18n.t('predictor9')}
+                subTitle={i18n.t('predictor10')}
                 icon={<CalendarTodayIcon fontSize="large"
                 />}
             />
@@ -168,14 +169,14 @@ export default function Predictor() {
             >
                 <Paper className={classes.paper} elevation={3}>
                     <Box sx={{ width: 'auto' }} padding>
-                        <Typography variant="h5" align="center">Datos a utilizar para la predicción:</Typography>
-                        <Typography variant="h6" align="center">proyecto: {projectName}</Typography>
-                        <Typography variant="h6" align="center">Programa: {programName}</Typography>
-                        <Typography variant="h6" align="center">FechaInicial: {initialDate}</Typography>
-                        <Typography variant="h6" align="center">FechaFinal: {finalDate}</Typography>
+                        <Typography variant="h5" align="center">{i18n.t('predictor11')}</Typography>
+                        <Typography variant="h6" align="center">{i18n.t('predictor12')} {projectName}</Typography>
+                        <Typography variant="h6" align="center">{i18n.t('predictor13')} {programName}</Typography>
+                        <Typography variant="h6" align="center">{i18n.t('predictor14')} {initialDate}</Typography>
+                        <Typography variant="h6" align="center">{i18n.t('predictor15')} {finalDate}</Typography>
                     </Box>
                     <Box textAlign='center'>
-                        <Controls.Button color="primary" variant="contained" onClick={handleSubmit} text="Realizar Predicción"/>
+                        <Controls.Button color="primary" variant="contained" onClick={handleSubmit} text={i18n.t('predictor16')}/>
                     </Box>
 
                 </Paper>
