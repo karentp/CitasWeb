@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect} from 'react'
 import { Grid } from '@material-ui/core';
 import Controls from "../../components/controls/Controls";
 import { useForm, Form } from '../../components/useForm';
@@ -10,6 +10,9 @@ import AlertMessage from '../../components/AlertMessage';
 import axios from 'axios';
 import CircularStatic from '../../components/CircularStatic'
 import ImageComponent from '../../components/ImageComponent';
+
+import i18n from '../../i18n/index.js';
+import i18next from '../../i18n/index.js';
 
 const initialValues = {
     name: '',
@@ -45,16 +48,16 @@ export default function BlogForm() {
     const [loading, setLoading] = React.useState(false);
     const [open, setOpen] = React.useState(false);
     const [error, setError] = useState('');
-    const message = id ? "Se ha actualizado el blog!" : "Se ha guardado el blog!"
-    const title = id ? "Actualizar Blog" : "Añadir nuevo Blog";
-    const description = id ? "Formulario para actualizar Blog" : "Formulario para añadir Blog";
+    const message = id ? i18next.t('blog15') : i18next.t('blog16')
+    const title = id ? i18next.t('blog17') : i18next.t('blog18');
+    const description = id ? i18next.t('blog19') : i18next.t('blog20');
     const [progress, setProgress] = useState(0);
     const validate = (fieldValues = values) => {
         let temp = { ...errors }
         if ('name' in fieldValues)
-            temp.name = fieldValues.name ? "" : "Este campo es obligatorio."
+            temp.name = fieldValues.name ? "" : i18next.t('blog21')
         if ('entrada' in fieldValues)
-            temp.entrada = fieldValues.entrada ? "" : "Este campo es obligatorio."
+            temp.entrada = fieldValues.entrada ? "" : i18next.t('blog21')
         setErrors({
             ...temp
         })
@@ -181,7 +184,7 @@ export default function BlogForm() {
                         <Grid item xs={6}>
                             <Controls.Input
                                 name="name"
-                                label="Nombre del blog"
+                                label={i18n.t('blog8')}
                                 value={values.name}
                                 onChange={handleInputChange}
                                 error={errors.name}
@@ -190,7 +193,7 @@ export default function BlogForm() {
                         <Grid item xs={9}>
                             <Controls.TextArea
                                 name="entrada"
-                                label="Entrada del blog"
+                                label={i18n.t('blog9')}
                                 value={values.entrada}
                                 onChange={handleInputChange}
                                 error={errors.entrada}
@@ -211,10 +214,10 @@ export default function BlogForm() {
 
                             <Controls.Button
                                 type="submit"
-                                text="Guardar"
+                                text={i18n.t('blog10')}
                             />
                             <Controls.Button
-                                text="Limpiar"
+                                text={i18n.t('blog11')}
                                 color="default"
                                 onClick={resetForm} />
                         </Grid>

@@ -14,6 +14,7 @@ import Alert from '@material-ui/lab/Alert';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import CloseIcon from '@material-ui/icons/Close';
+import i18n from '../../i18n';
 
 const AssignRole = ({ }) => {
     const history = useHistory();
@@ -27,12 +28,18 @@ const AssignRole = ({ }) => {
     const [open, setOpen] = React.useState(false);
     const [inputUser, setInputUser] = React.useState('');
     const [inputProject, setInputProject] = React.useState('');
+    const [isChecked, setIsChecked] = useState(false);
     const config = {
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,
         },
     };
+
+    const handleOnChange = () => {
+        setIsChecked(!isChecked);
+    };
+
     function wrapUsers(users) {
 
         setUsers(users);
@@ -52,27 +59,6 @@ const AssignRole = ({ }) => {
         setRole("investigador");
         setInputProject("");
         
-    }
-
-    async function getBio(userValue) {
-        try {
-            setLoading(true);
-            setSelectedUser(false);
-            const projects = await axios.get(
-                `${process.env.REACT_APP_API_URL}/api/private/filteredprogram/${userValue.id}`,
-                config
-            );
-            console.log(projects);
-            wrapProjects(projects.data.programs);
-
-
-        } catch (error) {
-            setTimeout(() => {
-                setError("");
-            }, 5000);
-            setLoading(false);
-            return setError("Authentication failed!");
-        }
     }
 
     useEffect(() => {
@@ -95,8 +81,25 @@ const AssignRole = ({ }) => {
             }
         }
 
+        async function getPrograms() {
+            try {
+                const projects = await axios.get(
+                    `${process.env.REACT_APP_API_URL}/api/private/program/`,
+                    config
+                );
+                console.log(projects.data.programs);
+                wrapProjects(projects.data.programs);
+            } catch (error) {
+                setTimeout(() => {
+                    setError("");
+                }, 5000);
+                setLoading(false);
+                return setError("Authentication failed!");
+            }
+        }
 
         getUsers();
+        getPrograms();
         return () => { unmounted = true; };
     }, []);
 
@@ -132,6 +135,7 @@ const AssignRole = ({ }) => {
                 export: true
             }
             userValue.roles.push(role);
+            console.log(userValue);
             const { data } = await axios.patch(
                 `${process.env.REACT_APP_API_URL}/api/private/users/${userValue.id}`,
                 {
@@ -142,7 +146,8 @@ const AssignRole = ({ }) => {
                 },
                 config
             );
-            await getBio(userValue);
+            console.log("New user data: ");
+            console.log(data);
             setLoading(false);
             setOpen(true);
             cleanForm();
@@ -199,11 +204,11 @@ const AssignRole = ({ }) => {
                             </IconButton>
                         }
                     >
-                        {error ? error : 'Se ha asociado el laboratorio!'}
+                        {error ? error : i18n.t('assignrole1')}
                     </Alert>
                 </Collapse>
 
-                <h3 className="register-screen__title">Asignar laboratorio a usuario existente</h3>
+                <h3 className="register-screen__title">{i18n.t('assignrole2')}</h3>
                 {error && <span className="error-message">{error}</span>}
                 <br />
                 <div >
@@ -213,19 +218,18 @@ const AssignRole = ({ }) => {
                             setuserValue(newValue);
                             setSelectedUser(true);
                             setSelectedProject(false);
-                            console.log(newValue);
-                            getBio(newValue);
                         }}
                         id="combo-box-users"
                         options={users}
                         getOptionLabel={(option) => option.username}
                         style={{ width: 300 }}
-                        renderInput={(params) => <TextField {...params} label="Gestor" variant="outlined" />}
+                        renderInput={(params) => <TextField {...params} label={i18n.t('assignrole5')} variant="outlined" />}
                         disabled={loading}
                         disableClearable
                         inputValue={inputUser}
                         onInputChange={(event, newInputValue) => {
                             setInputUser(newInputValue);
+                            setSelectedUser(true);
                         }}
                     />
                     <br />
@@ -233,14 +237,14 @@ const AssignRole = ({ }) => {
                         value={projectValue}
                         onChange={(event, newValue) => {
                             setprojectValue(newValue);
+                            setSelectedUser(true);
                             setSelectedProject(true);
                         }}
                         id="combo-box-assign"
                         options={projects}
                         getOptionLabel={(option) => option.name}
                         style={{ width: 300 }}
-                        renderInput={(params) => <TextField {...params} label="Laboratorios" variant="outlined" />}
-                        disabled={!selectedUser}
+                        renderInput={(params) => <TextField {...params} label={i18n.t('assignrole3')} variant="outlined" />}
                         disableClearable
                         inputValue={inputProject}
                         onInputChange={(event, newInputValue) => {
@@ -251,7 +255,7 @@ const AssignRole = ({ }) => {
                 </div>
                 <br />
                 <button type="submit" className="btn btn-primary">
-                    Asignar laboratorio
+                {i18n.t('assignrole4')}
                 </button>
             </form>
         </div>

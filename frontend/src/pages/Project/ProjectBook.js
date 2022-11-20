@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { CalendlyEventListener, InlineWidget } from "react-calendly";
 import CalendarTemplate from './Calendar';
 import axios from "axios";
+import i18n from '../../i18n';
 
 const useStyles = makeStyles(theme => ({
   cardContainer: {

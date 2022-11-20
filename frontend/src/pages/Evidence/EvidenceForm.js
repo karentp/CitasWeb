@@ -10,6 +10,7 @@ import AlertMessage from '../../components/AlertMessage';
 import axios from 'axios';
 import CircularStatic from '../../components/CircularStatic'
 import ImageComponent from '../../components/ImageComponent';
+import i18n from '../../i18n';
 
 const initialValues = {
     name: '',
@@ -180,7 +181,7 @@ export default function EvidenceForm() {
                         <Grid item xs={12}>
                             <Controls.Input
                                 name="name"
-                                label="Nombre"
+                                label={i18n.t('evidence8')}
                                 value={values.name}
                                 onChange={handleInputChange}
                                 error={errors.name}
@@ -188,7 +189,7 @@ export default function EvidenceForm() {
                         </Grid>
                         <Grid item xs={12}>
                             <Controls.Input
-                                label="Descripción"
+                                label={i18n.t('evidence9')}
                                 name="description"
                                 value={values.description}
                                 onChange={handleInputChange}
@@ -206,10 +207,10 @@ export default function EvidenceForm() {
 
                             <Controls.Button
                                 type="submit"
-                                text="Guardar"
+                                text={i18n.t('evidence10')}
                             />
                             <Controls.Button
-                                text="Limpiar"
+                                text={i18n.t('evidence11')}
                                 color="default"
                                 onClick={resetForm} />
                         </Grid>

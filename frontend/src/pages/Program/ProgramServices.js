@@ -22,6 +22,7 @@ import { CSVDownloader } from 'react-papaparse'
 import DownloadIcon from '@mui/icons-material/Download';
 import Tooltip from '@mui/material/Tooltip';
 import { getPrograms } from '../../services/programService';
+import i18n from '../../i18n';
 
 const useStyles = makeStyles(theme => ({
     cardContainer: {
@@ -241,7 +242,7 @@ export default function ProgramServices() {
             </div>
 
             <PageHeader
-                title="Información detallada sobre un laboratorio"
+                title={i18n.t('programservice1')}
                 icon={<InfoIcon fontSize="large"
                 />}
             />
@@ -271,13 +272,13 @@ export default function ProgramServices() {
 
                     <CardActions>
                         <Typography variant="subtitle1" color="primary" component="p">
-                            <span>Teléfono:</span>
+                            <span>{i18n.t('programform3')}</span>
                             {objetivesProgram ? objetivesProgram : ''}
                         </Typography>
                     </CardActions>
                     <CardActions>
                         <Typography variant="subtitle1" color="primary" component="p">
-                            <span>Correo Electrónico:</span>
+                            <span>{i18n.t('programform4')}</span>
                             {definitionProgram ? definitionProgram : ''}
                         </Typography>
                         
@@ -298,7 +299,7 @@ export default function ProgramServices() {
                 <Card className={classes.cardContainer} >
 
                     <CardContent >
-                        <h3>Servicios Disponibles en este Laboratorio:</h3>
+                        <h3>{i18n.t('programservice2')}</h3>
                    
 
                     </CardContent>
@@ -325,15 +326,15 @@ export default function ProgramServices() {
                                         {project.name}
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary">
-                                        Descripción: {project.description}
+                                        {i18n.t('programservice3')} {project.description}
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary">
-                                        Precio: {project.objetives ? project.objetives : 0}
+                                        {i18n.t('programservice4')} {project.objetives ? project.objetives : 0}
                                     </Typography>
                                 </CardContent>
 
                                 <CardActions>
-                                    <Button className={classes.button} variant="contained" style={{ marginRight: 10 }} component={Link} to={`/project/book/${project._id}`}><ModeEditIcon />Agendar</Button>
+                                    <Button className={classes.button} variant="contained" style={{ marginRight: 10 }} component={Link} to={`/project/book/${project._id}`}><ModeEditIcon />{i18n.t('programservice5')}</Button>
                                 </CardActions>
                             </Card>
                     </Grid><Grid  item xs={2} >

@@ -36,6 +36,7 @@ import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
 import { getBase64 } from '../../services/getFileService';
 import Alert from '@mui/material/Alert';
+import i18n from '../../i18n';
 
 import FileManager from '../../components/FileManager';
 
@@ -389,8 +390,8 @@ function CreateData() {
     return (
         <Container>
             <PageHeader
-                title="Añadir datos al programa"
-                subTitle="Se guardarán los datos del proyecto"
+                title={i18n.t('createdata1')}
+                subTitle={i18n.t('createdata2')}
                 icon={<InfoIcon fontSize="Large"
                 />}
             />
@@ -668,7 +669,7 @@ function CreateData() {
                         alignItems: 'center'
                     }}
                     >
-                        <Tooltip title="Añadir nueva columna">
+                        <Tooltip title={i18n.t("createdata3")}>
                             <IconButton style={{ position: "fixed" }} disabled={inputFields.length === 0} var
                                 onClick={handleAddFields}
                             >
@@ -686,7 +687,7 @@ function CreateData() {
                         variant="contained"
                         color="primary"
                         onClick={() => setOpenDialog(true)}
-                        text="Guardar datos ingresados"
+                        text={i18n.t("createdata4")}
                     />
                 </Box>
                 <br />
@@ -694,8 +695,8 @@ function CreateData() {
                 <br />
                 <br />
                 <PageHeader
-                    title={"Subir archivo CSV"}
-                    subTitle={"Ingresar información a la base de datos con un archivo CSV."}
+                    title={i18n.t("createdata5")}
+                    subTitle={i18n.t("createdata6")}
                     icon={<FileUploadIcon fontSize="large" color='primary'
                     />}
                 />
@@ -703,7 +704,7 @@ function CreateData() {
 
                     <FileManager setCSVData={setCSVData} />
                     <Controls.Button
-                        text="Enviar datos"
+                        text={i18n.t("createdata7")}
                         color="primary"
                         onClick={handleAddDataFromCSV}
                     />

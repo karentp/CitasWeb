@@ -7,6 +7,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import IconButton from "@material-ui/core/IconButton";
+import i18n from '../i18n';
 
 const useStyles = makeStyles(theme => ({
     sizeAvatar: {
@@ -95,11 +96,11 @@ export default function ImageComponent(props) {
                                     onChange={onChange}
                                 />                                
                                 <label htmlFor="raised-button-file">
-                                    Cambiar
+                                    {i18n.t('image1')}
                                 </label>
                             </MenuItem>
                             <MenuItem id="clearImage" onClick={onChange}>
-                                Quitar
+                                {i18n.t('image2')}
                             </MenuItem>
                         </Menu>
                     </div>

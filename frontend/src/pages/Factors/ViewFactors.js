@@ -29,6 +29,7 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import axios from "axios";
 import { CSVLink } from "react-csv"
 import DownloadIcon from '@mui/icons-material/Download';
+import i18n from '../../i18n';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -187,18 +188,18 @@ export default function ViewFactors(props) {
                 aria-labelledby="alert-dialog-slide-title"
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle id="alert-dialog-slide-title">{"¿Desea borrar este factor?"}</DialogTitle>
+                <DialogTitle id="alert-dialog-slide-title">{i18n.t('viewfactors1')}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        Esta decisión no es reversible.
+                        {i18n.t('viewfactors2')}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Cancelar
+                        {i18n.t('viewfactors3')}
                     </Button>
                     <Button onClick={handleAccept} color="secondary">
-                        Eliminar
+                        {i18n.t('viewfactors4')}
                     </Button>
                 </DialogActions>
             </Dialog>

@@ -39,6 +39,8 @@ import DownloadIcon from '@mui/icons-material/Download';
 import Grid from '@material-ui/core/Grid'
 import { getPermissions } from '../../services/userService';
 
+import i18n from '../../i18n';
+
 const useStyles = makeStyles((theme) => ({
     root: {
         '& .MuiTextField-root': {
@@ -434,8 +436,8 @@ function ViewData() {
     return (
         <Container>
             <PageHeader
-                title="Datos incluidos en el programa"
-                subTitle="Se muestran todos los datos asociados a este programa y proyecto"
+                title={i18n.t('viewdata1')}
+                subTitle={i18n.t('viewdata2')}
                 icon={<InfoIcon fontSize="Large"
                 />}
             />
@@ -444,7 +446,7 @@ function ViewData() {
                     container
                     direction="row"
                 >
-                    <Tooltip title="Exportar datos">
+                    <Tooltip title={i18n.t('viewdata3')}>
                         <div className={classes.iconContainer}>
                             <CSVDownloader
                                 data={inputFields}
@@ -654,7 +656,7 @@ function ViewData() {
                                             onChange={event => handleChangeInput(inputField.id, event)}
                                         />
                                         : inputFields[index][factor.name] === ""
-                                            ? <Tooltip title="Subir imagen">
+                                            ? <Tooltip title={i18n.t('viewdata6')}>
                                                 <Button
                                                     style={{
                                                         margin: "8px",
@@ -681,7 +683,7 @@ function ViewData() {
                                                 </Button>
                                             </Tooltip>
                                             : <>
-                                                <Tooltip title="Abrir imagen">
+                                                <Tooltip title={i18n.t('viewdata7')}>
                                                     <Button
                                                         style={{
                                                             margin: "8px",
@@ -712,7 +714,7 @@ function ViewData() {
                                                 </Tooltip>
                                                 {
                                                     inputFields[index]["edit"] &&
-                                                    <Tooltip title="Remover imagen">
+                                                    <Tooltip title={i18n.t('viewdata8')}>
                                                         <Button
                                                             style={{
                                                                 margin: "8px",
@@ -743,14 +745,14 @@ function ViewData() {
                                 }}>
 
                                     {!inputFields[index]["edit"]
-                                        ? <Tooltip title="Editar registro">
+                                        ? <Tooltip title={i18n.t('viewdata9')}>
                                             <IconButton onClick={() => isEditing(inputField.id, true)}>
                                                 <Avatar className={classes.edit}>
                                                     <ModeEditIcon />
                                                 </Avatar>
                                             </IconButton>
                                         </Tooltip>
-                                        : <Tooltip title="Guardar datos">
+                                        : <Tooltip title={i18n.t('viewdata10')}>
                                             <IconButton onClick={() => prepareEdit(inputField)}>
                                                 <Avatar className={classes.save}>
                                                     <Check />
@@ -758,7 +760,7 @@ function ViewData() {
                                             </IconButton>
                                         </Tooltip>
                                     }
-                                    <Tooltip title="Eliminar registro">
+                                    <Tooltip title={i18n.t('viewdata11')}>
                                         <IconButton onClick={() => prepareDelete(inputField.id)}>
                                             <Avatar className={classes.remove}>
                                                 <DeleteIcon />

@@ -10,6 +10,7 @@ import AlertMessage from '../../components/AlertMessage';
 import axios from 'axios';
 import CircularStatic from '../../components/CircularStatic'
 import ImageComponent from '../../components/ImageComponent';
+import i18n from '../../i18n';
 
 const initialValues = {
     name: '',
@@ -187,7 +188,7 @@ export default function OrganizationForm() {
                         <Grid item xs={12}>
                             <Controls.Input
                                 name="name"
-                                label="Nombre"
+                                label={i18n.t('createfactor3')}
                                 value={values.name}
                                 onChange={handleInputChange}
                                 error={errors.name}
@@ -195,7 +196,7 @@ export default function OrganizationForm() {
                         </Grid>
                         <Grid item xs={12}>
                             <Controls.Input
-                                label="Descripción"
+                                label={i18n.t('createfactor4')}
                                 name="description"
                                 value={values.description}
                                 onChange={handleInputChange}
@@ -205,7 +206,7 @@ export default function OrganizationForm() {
                         <Grid item xs={12}>
                             <Controls.Input
                                 name="objetivesOrganization"
-                                label="Teléfono"
+                                label={i18n.t('orgform1')}
                                 value={values.objetivesOrganization}
                                 onChange={handleInputChange}
                                 error={errors.objetivesOrganization}
@@ -213,7 +214,7 @@ export default function OrganizationForm() {
                         </Grid>
                         <Grid item xs={12}>
                             <Controls.Input
-                                label="Correo electrónico"
+                                label={i18n.t('orgform2')}
                                 name="definitionOrganization"
                                 value={values.definitionOrganization}
                                 onChange={handleInputChange}

@@ -22,6 +22,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Fade from '@material-ui/core/Fade';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Typography from '@material-ui/core/Typography';
+import i18n from '../../i18n';
 
 const useStyles = makeStyles((theme) => ({
   cardContainer: {
@@ -165,11 +166,11 @@ export default function ProgramSelector({id, setProgram, setProgramName}) {
               >
                 <TableHead>
                   <TableRow className={classes.thead}>
-                    <TableCell>Nombre</TableCell>
-                    <TableCell>Objetivos</TableCell>
-                    <TableCell>Definición principal</TableCell>
+                    <TableCell>{i18n.t('vieworg7')}</TableCell>
+                    <TableCell>{i18n.t('programselector1')}</TableCell>
+                    <TableCell>{i18n.t('programselector2')}</TableCell>
                     <TableCell className={classes.programholder}>
-                      Acciones
+                      {i18n.t('programselector2')}
                     </TableCell>
                   </TableRow>
                 </TableHead>
@@ -198,7 +199,7 @@ export default function ProgramSelector({id, setProgram, setProgramName}) {
                                 <CheckIcon />
                               </Button>
                             </Tooltip>
-                            <Tooltip title="Información">
+                            <Tooltip title={i18n.t('vieworg11')}>
                               <Button
                                 className={classes.button}
                                 variant="contained"
@@ -209,7 +210,7 @@ export default function ProgramSelector({id, setProgram, setProgramName}) {
                                 <InfoIcon />
                               </Button>
                             </Tooltip>
-                            <Tooltip title="Mostrar datos">
+                            <Tooltip title={i18n.t('programselector4')}>
                               <Button
                                 color="inherit"
                                 variant="contained"
@@ -242,7 +243,7 @@ export default function ProgramSelector({id, setProgram, setProgramName}) {
         <div className={classes.programholder} hidden={isProgramsBio}>
           <br />
           <Typography variant="subtitle1" color="textSecondary" component="p">
-            No hay nada qué mostrar en está sección
+            {i18n.t('programselector5')}
           </Typography>
         </div>
       </div>

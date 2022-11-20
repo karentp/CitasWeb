@@ -9,6 +9,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import axios from "axios";
 import AlertMessage from '../../components/AlertMessage';
 import Controls from "../../components/controls/Controls";
+import i18n from '../../i18n';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -138,10 +139,10 @@ export default function ProjectSelector({setProject, setProjectName}) {
                     <Table stickyHeader aria-label="sticky table" className={classes.container}>
                         <TableHead>
                             <TableRow className={classes.thead}>
-                                <TableCell>Nombre</TableCell>
-                                <TableCell>¿Es serie temporal?</TableCell>
+                                <TableCell>{i18n.t('vieworg7')}</TableCell>
+                                <TableCell>{i18n.t('programselector6')}</TableCell>
                                 <TableCell>Tipo</TableCell>
-                                <TableCell className={classes.programholder}>Acciones</TableCell>
+                                <TableCell className={classes.programholder}>{i18n.t('programselector7')}</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

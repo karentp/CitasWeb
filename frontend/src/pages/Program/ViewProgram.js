@@ -27,6 +27,7 @@ import { deleteProgram } from '../../services/programService';
 import Controls from "../../components/controls/Controls";
 import { CSVLink } from "react-csv"
 import DownloadIcon from '@mui/icons-material/Download';
+import i18n from '../../i18n';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -197,26 +198,26 @@ export default function ViewProgram() {
                 aria-labelledby="alert-dialog-slide-title"
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle id="alert-dialog-slide-title">{"¿Desea borrar este proyecto?"}</DialogTitle>
+                <DialogTitle id="alert-dialog-slide-title">{i18n.t('viewprogram1')}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        Esta decisión no es reversible.
+                        {i18n.t('viewprogram2')}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Cancelar
+                        {i18n.t('viewprogram3')}
                     </Button>
                     <Button onClick={handleAccept} color="secondary">
-                        Eliminar
+                        {i18n.t('viewprogram4')}
                     </Button>
                 </DialogActions>
             </Dialog>
 
 
             <PageHeader
-                title="Información sobre los laboratorios"
-                subTitle="Acá se mostrarán todos los laboratorios del sistema"
+                title={i18n.t('viewprogram5')}
+                subTitle={i18n.t('viewprogram6')}
                 icon={<InfoIcon fontSize="large"
                 />}
             />
@@ -231,11 +232,11 @@ export default function ViewProgram() {
             >
                 <Paper className={classes.paper} elevation={3}>
                     <Box sx={{ width: 'auto' }} padding>
-                        <Typography variant="h6" align="center">¿Se necesita un nuevo laboratorio?</Typography>
+                        <Typography variant="h6" align="center">{i18n.t('viewprogram7')}</Typography>
 
                     </Box>
                     <Box textAlign='center'>
-                        <Controls.Button color="primary" variant="contained" component={Link} to={`/program/create/`} text="Crear laboratorio" />
+                        <Controls.Button color="primary" variant="contained" component={Link} to={`/program/create/`} text={i18n.t('viewprogram8')} />
                     </Box>
                 </Paper>
 
@@ -292,10 +293,10 @@ export default function ViewProgram() {
                     <Table stickyHeader aria-label="sticky table" className={classes.container}>
                         <TableHead>
                             <TableRow className={classes.thead}>
-                                <TableCell>Nombre</TableCell>
-                                <TableCell>Teléfono</TableCell>
-                                <TableCell>Descripción</TableCell>
-                                <TableCell className={classes.programholder}>Acciones</TableCell>
+                                <TableCell>{i18n.t('viewprogram9')}</TableCell>
+                                <TableCell>{i18n.t('viewprogram10')}</TableCell>
+                                <TableCell>{i18n.t('viewprogram11')}</TableCell>
+                                <TableCell className={classes.programholder}>{i18n.t('viewprogram12')}</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -311,13 +312,13 @@ export default function ViewProgram() {
                                             justifyContent="center"
                                             alignItems="center"
                                         >
-                                            <Tooltip title="Editar">
+                                            <Tooltip title={i18n.t('viewprogram13')}>
                                                 <Button color="primary" variant="contained" style={{ marginRight: 10 }} component={Link} to={`/program/update/${program._id}`}><ModeEditIcon /></Button>
                                             </Tooltip>
-                                            <Tooltip title="Información">
+                                            <Tooltip title={i18n.t('viewprogram14')}>
                                                 <Button className={classes.button} variant="contained" style={{ marginRight: 10 }} component={Link} to={`/program/show/${program._id}`}><InfoIcon /></Button>
                                             </Tooltip>
-                                            <Tooltip title="Eliminar">
+                                            <Tooltip title={i18n.t('viewprogram15')}>
                                                 <Button color="secondary" variant="contained" onClick={() => {
                                                     setOpenDialog(true); setProgramId(program._id);
                                                 }}><DeleteIcon /></Button>

@@ -9,7 +9,6 @@ const ProgramSchema = new Schema({
   definitionProgram: { type: String, required: true },
   image: { type: String},
   projects: [{ type: Object, ref: 'Project'}]
-  
 });
 
 const Program = mongoose.model('Program', ProgramSchema);

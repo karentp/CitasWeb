@@ -9,6 +9,8 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import Modal from '@mui/material/Modal';
 import axios from "axios";
+import i18n from '../../i18n';
+import i18next from '../../i18n';
 
 const useStyles = makeStyles(theme => ({
     pageContent: {
@@ -99,7 +101,7 @@ export default function AssignPermission(props) {
         
         try{
             if(isEmpty){
-                throw new Error("Por favor seleccione un proyecto");
+                throw new Error(i18next.t('assignpermission7'));
             }else{
                 setOpen(true);
                 const newRoles = fixRoles(roleValue);
@@ -140,7 +142,7 @@ export default function AssignPermission(props) {
         >
             <div className={classes.divContent}>
                 <Paper className={classes.pageContent}>
-                <AlertMessage errorMessage={error} successMessage={"Se ha asignado los permisos!"} openMessage={open} />
+                <AlertMessage errorMessage={error} successMessage={i18n.t('assignpermission1')} openMessage={open} />
                     <Form >
 
 
@@ -164,7 +166,7 @@ export default function AssignPermission(props) {
                                 options={values}
                                 getOptionLabel={(option) => option.projectName}
                                 style={{ width: 300, justifyContent: "center" }}
-                                renderInput={(params) => <TextField {...params} label="Proyectos" variant="outlined" />}
+                                renderInput={(params) => <TextField {...params} label={i18n.t('assignpermission2')} variant="outlined" />}
                                 inputValue={inputValue}
                                 onInputChange={(event, newInputValue) => {
                                     setInputValue(newInputValue);
@@ -187,7 +189,7 @@ export default function AssignPermission(props) {
                         >
                             <Controls.Checkbox
                                     name="export"
-                                    label="Exportar CSV"
+                                    label={i18n.t('assignpermission3')}
                                     value={roleValue? roleValue.export:false}
                                     onChange={() => {
                                         if (roleValue) setRoleValue({...roleValue, ["export"]: !roleValue.export})}
@@ -204,7 +206,7 @@ export default function AssignPermission(props) {
                         >
                             <Controls.Checkbox
                                     name="editFactor"
-                                    label="Editar factores"
+                                    label={i18n.t('assignpermission4')}
                                     value={roleValue? roleValue.editFactor:false}
                                     onChange={() => {
                                         if (roleValue) setRoleValue({...roleValue, ["editFactor"]: !roleValue.editFactor})}
@@ -221,7 +223,7 @@ export default function AssignPermission(props) {
                         >
                             <Controls.Checkbox
                                     name="editData"
-                                    label="Editar datos"
+                                    label={i18n.t('assignpermission5')}
                                     value={roleValue? roleValue.editData:false}
                                     onChange={() => {
                                         if (roleValue) setRoleValue({...roleValue, ["editData"]: !roleValue.editData})}
@@ -239,7 +241,7 @@ export default function AssignPermission(props) {
                         >
                             <div>
                                 <Controls.Button
-                                    text="Guardar"
+                                    text={i18n.t('assignpermission6')}
                                     onClick = {handleSubmit}
                                 />
                             </div>
