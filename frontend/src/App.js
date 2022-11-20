@@ -17,6 +17,8 @@ import AvailabilityView from './pages/Project/AvailabilityView';
 import AvailabilityEdit from './pages/Project/AvailabilityEdit';
 import ProgramForm from './pages/Program/ProgramForm';
 import ViewProgram from './pages/Program/ViewProgram';
+import LabsPerManager from './pages/Program/ProgramPerManager';
+import ProgramsOfUser from './pages/Program/ProgramsOfUser';
 import ShowOrganization from './pages/Organization/ShowOrganization';
 import OrganizationForm from './pages/Organization/OrganizationForm';
 import ViewOrganization from './pages/Organization/ViewOrganization';
@@ -288,6 +290,12 @@ function App() {
               <ProgramForm />
             </RequireAuth>
 
+            <RequireAuth exact path='/program/user/:userId'>
+              <Header />
+              <SideMenu />
+              <ProgramsOfUser />
+            </RequireAuth>
+
             <RequireAuth exact path='/organization/create'>
               <Header />
               <SideMenu />
@@ -397,6 +405,12 @@ function App() {
               <Header />
               <SideMenu />
               <ViewNotice />
+            </RequireAuth>
+
+            <RequireAuth exact path="/labsperManager">
+              <Header />
+              <SideMenu />
+              <LabsPerManager />
             </RequireAuth>
 
 

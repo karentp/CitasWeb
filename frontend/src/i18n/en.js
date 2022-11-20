@@ -281,6 +281,7 @@ export const eng = {
     sidemenu5: 'Schedule service',
     sidemenu6: 'Services',
     sidemenu7: 'Manage spaces',
+    sidemenu8: 'See laboratories by manager',
 
     //components/filemanager
     filemanager1: 'Choose file',
@@ -292,5 +293,13 @@ export const eng = {
 
     //components/imagecomponent
     image1: 'Change',
-    image2: 'Quit'
+    image2: 'Quit',
+
+    //programperpage
+    programper1: 'Laboratories for manager',
+    programper2: 'Information of the managers and their assigned laboratories',
+    programper3: 'Press the information button to access the laboratorie',
+    programper4: 'Laboratory',
+    programper5: 'Role',
+    programper6: 'Delete laboratory',
 }   

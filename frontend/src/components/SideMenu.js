@@ -13,6 +13,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import HomeWork from '@material-ui/icons/HomeWork';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import CoPresentIcon from '@mui/icons-material/CoPresent';
 import EcoIcon from '@material-ui/icons/Eco';
 import HomeIcon from '@material-ui/icons/Home';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
@@ -127,6 +128,13 @@ export default function SideMenu() {
             <ListItem button key={'usuarios'} onClick={() => moveRoute('/users')}>
               <ListItemIcon>{1 % 2 === 0 ? <InboxIcon /> : <PersonIcon />}</ListItemIcon>
               <ListItemText primary={i18n.t('sidemenu4')}/>
+            </ListItem>
+          </List>
+          <Divider />
+          <List>
+            <ListItem button key={'labsperManager'} onClick={() => moveRoute('/labsperManager')}>
+              <ListItemIcon><CoPresentIcon /></ListItemIcon>
+              <ListItemText primary={i18n.t('sidemenu8')}/>
             </ListItem>
           </List>
           <Divider />

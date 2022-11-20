@@ -281,6 +281,7 @@ export const esp = {
     sidemenu5: 'Agendar servicio',
     sidemenu6: 'Servicios',
     sidemenu7: 'Gestionar espacios',
+    sidemenu8: 'Ver laboratorios por gestor',
     
     //components/filemanager
     filemanager1: 'Elegir archivo',
@@ -292,5 +293,13 @@ export const esp = {
 
     //components/imagecomponent
     image1: 'Cambiar',
-    image2: 'Quitar'
+    image2: 'Quitar',
+
+    //programperpage
+    programper1: 'Laboratorios por gestor',
+    programper2: 'Información sobre los gestores y sus laboratorios asignados',
+    programper3: 'Presione el botón de información para accesar a los laboratorios',
+    programper4: 'Laboratorio',
+    programper5: 'Rol',
+    programper6: 'Eliminar laboratorio',
 }
